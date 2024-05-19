@@ -1,0 +1,191 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+  --mainColor1:  #636364;
+    --mainColor2: rgb(0, 0, 0);
+    --mainColor3: #31ba44;
+  --mainColor4: #ffffff;
+  --mainColor5: #f2e7d8;
+  --mainColor6: #3f2105;
+  --bg-gradient: linear-gradient(0deg, rgba(148, 114, 88, 1) 5%, rgba(64, 46, 32, 1) 99%, rgba(148, 125, 91, 1) 99.281%);
+}
+.offcanvas{
+  color: var(--mainColor2);
+  background-color: var(--mainColor4);
+}
+.offcanvas-header .btn-close{
+color: var(--mainColor4);
+font-size: 1.5rem;
+}
+@media only screen and (max-width: 1254px) {
+  .icon-menu:hover{
+    color: var(--mainColor4);
+  }
+
+
+body{
+  overflow-x: hidden;
+}
+}
+
+@media only screen and (max-width: 1200px) {
+  .container{
+    max-width: 95% !important;
+  }
+}
+@media only screen and (max-width: 1064px) {
+  .navbar-expand-lg .navbar-collapse {
+display: none !important;
+  }
+  .form-res{
+    display: flex;
+  }
+  .icon-menu{
+    display: flex !important;
+  }
+
+
+  .nav-pills-profile-sm .nav-link.active {
+    background-color: var(--mainColor1);
+    border-radius: 0.5125rem;
+    color: var(--mainColor4) !important;
+}
+
+  .navbar .container-fluid{
+    padding-inline: 4rem;
+    }
+    .nav-slider{
+      display: none;
+    }
+    #navBar {
+      background-color: var(--mainColor1)}
+
+
+.flag ,.floatwhatsapp {
+  bottom: 2%;
+}
+
+.back-to-top {
+  bottom: 10%;
+}
+
+.flag-list {
+  bottom: 10%;
+}
+
+
+
+
+}
+@media only screen and (max-width: 1110px) {
+
+  .sidenav {padding-top: 15px;}
+  .side-menu .text-search{
+    font-weight: 400;
+    font-size: 20px;
+    padding-block: 80px;
+
+  }
+  .overflow-row {
+    overflow-x: scroll;
+  }
+  .btn-close:focus {
+    box-shadow: 0 0 0 0rem rgba(13,110,253,.25);
+}
+
+}
+@media only screen and (max-width: 991px) {
+  .zoom{
+    max-height: 350px;
+    overflow: hidden;}
+  .gray-bage h3 {
+    font-size: 30px;
+
+}
+  .w-75,.w-50{
+    width: 100% !important;
+  }
+  form.w-50{
+    width: 100% !important;
+  }
+  .nav-pills-profile{
+    display: none;
+  }
+  .nav-pills {
+    flex-wrap: nowrap;
+    text-align: center;
+    justify-content: center;
+  } 
+  .nav-pills h6{
+    flex-wrap: nowrap;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  } 
+  .profile .nav-pills h6 {
+    text-align: center;
+}
+  .icon-menu-profile{
+    display: flex !important;
+    padding-inline: 2rem;
+
+  }
+
+  h3 {
+    font-size: 20px;
+
+}
+}
+@media only screen and (max-width: 900px) {
+
+  .item-container{
+    height: 250px;
+
+  }
+  .slider2 .img-card {
+    max-height: 200px;
+  }
+  .flex-grow-1 {
+    font-size: 10px;
+  }
+  .text-price{
+    font-size: 14px;
+  }
+  .overlay2{
+
+    font-size: 1.5rem;}
+.container{
+    width: 100%;
+}
+
+h2 {
+    font-size: 2rem;}
+    .section {
+        padding: 2.3rem 0rem 2.3rem 0rem;
+    }
+
+}
+@media only screen and (max-width: 770px) {
+  .row-res{
+    display: flex;
+  }
+  .row-res-img{
+    display: none;
+  }
+  .row-small{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  }
+  .row-small .zoom {
+    max-width: 20%;
+  }
+
+.img-big{
+  width: 100% !important;
+}}
