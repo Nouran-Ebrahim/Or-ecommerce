@@ -8,7 +8,7 @@ use App\Http\Requests\Admin\StoreSettingRequest;
 use App\Models\Country;
 use App\Models\Setting;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\App;
 class SettingController extends Controller
 {
     public function index()
@@ -73,6 +73,13 @@ class SettingController extends Controller
             }
         }
         alert()->success(__('trans.updatedSuccessfully'));
+        $locale=Setting::where('key','DefaultLang')->first();
+        session()->put('locale', $locale->value);
+
+            App::setLocale($locale->value);
+      
+
+       
         session()->forget('Settings');
 
         return redirect()->back();

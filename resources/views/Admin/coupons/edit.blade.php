@@ -5,6 +5,7 @@
     @method('PUT')
     @csrf
     <div class="row">
+        <input type="hidden" name="id" value="{{$Coupon->id}}">
         <div class="col-md-6">
             <label for="code">@lang('trans.code')</label>
             <input id="code" type="text" name="code" value="{{ $Coupon['code'] }}" required placeholder="@lang('trans.code')" class="form-control">

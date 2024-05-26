@@ -18,6 +18,7 @@
             <th><input type="checkbox" id="ToggleSelectAll" class="main-btn"></th>
             <th>#</th>
             <th style="text-align:center;">@lang('trans.image')</th>
+            <th style="text-align:center;">@lang('trans.type')</th>
             <th style="text-align:center;">@lang('trans.visibility')</th>
             <th></th>
         </tr>
@@ -91,6 +92,10 @@
                     {
                         data: 'image',
                         name: 'image'
+                    },
+                    {
+                        data: 'type',
+                        name: 'type'
                     },
                     {
                         data: 'status',

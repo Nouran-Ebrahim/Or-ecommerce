@@ -80,18 +80,22 @@ class WhatsApp
         if ($Order->discount > 0) {
             $message .= '\n *Discount :* '.number_format(Country()->currancy_value * $Order->discount, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
         }
-        if ($Order->vat > 0) {
-            $message .= '\n *VAT :* '.number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
-        }
+        
         if ($Order->coupon > 0) {
             $message .= '\n *Coupon :* '.number_format(Country()->currancy_value * $Order->coupon, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
             $message .= '\n *Sub Total after coupon :* '.number_format(Country()->currancy_value * $Order->sub_total_after_coupon, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
 
         }
+        if ($Order->vat > 0) {
+            $message .= '\n *VAT :* '.number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
+        }
         if ($Order->charge_cost > 0) {
             $message .= '\n *Delivery Cost :* '.number_format(Country()->currancy_value * $Order->charge_cost, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
         }
         $message .= '\n *NetTotal :* '.number_format(Country()->currancy_value * $Order->net_total, Country()->decimals, '.', '').' '.Country()->currancy_code_en;
+        if ($Order->notes != null) {
+            $message .= '\n *Order Notes :* '.$Order->notes;
+        }
         $message .= '\n  \n';
 
         $message .= '\n '.setting('order_whatsapp_text_'.lang());

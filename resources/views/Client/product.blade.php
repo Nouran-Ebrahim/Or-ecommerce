@@ -494,6 +494,18 @@
     Fancybox.bind('[data-fancybox="md-gallery"]', {});
 
 </script> --}}
+    <script>
+        // pills-profile-tab
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageParam= urlParams.get("page");
+        console.log(pageParam)
+        if(pageParam !=null){
+            $('#pills-home-tab').removeClass('active');
+            $('#pills-home').removeClass('show active')
+            $('#pills-profile-tab').addClass('active');
+            $('#pills-profile').addClass('show active');
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -505,6 +517,16 @@
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500
+            });
+        </script>
+    @endif
+    @if (session()->has('rating'))
+        <script>
+            Swal.fire({
+                title: "@lang('trans.Rating Required')",
+                text: "{{ session()->get('rating') }}",
+                icon: 'error',
+                showConfirmButton: true,
             });
         </script>
     @endif
@@ -536,6 +558,7 @@
         $('.add-to-cart').on('click', function(e) {
             var product_id = "{{ request()->route('id') }}"
             var quantity = $('#quantity').val()
+            console.log(quantity);
             var size_id = $('#size_input').val()
             var color_id = $('.gallery-img-box.border-black').data('color_id')
             var category_id = "{{ request()->route('category_id') }}"
@@ -555,7 +578,7 @@
 
                 success: function(response) {
 
-                    $('#cartCount').text(`(${response.cartCount})`);
+                    $('#cartCount').text(quantity);
                     if (response.status == "moved") {
                         $('.wish svg path').attr('fill', 'black');
                         Swal.fire({

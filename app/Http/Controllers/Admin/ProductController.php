@@ -70,11 +70,13 @@ class ProductController extends Controller
                         $instance->where('title_ar', 'LIKE', '%' . $request->title . '%')->orwhere('title_en', 'LIKE', '%' . $request->title . '%');
                     }
                     if (!is_null($request->discount)) {
-                        if (!$request->boolean('discount')) {
-                            $instance->whereDoesntHave('Discount');
-                        } elseif ($request->boolean('discount')) {
-                            $instance->whereHas('Discount');
+
+                        if ($request->discount == "1") {
+                            $instance->where("discount", "!=", null);
+                        } else {
+                            $instance->latest();
                         }
+
                     }
                     if ($request->price_from && !is_null($request->price_from)) {
                         $instance->where('price', '>=', $request->price_from);
@@ -91,7 +93,8 @@ class ProductController extends Controller
                     }
 
                     if ($request->sort && !is_null($request->sort)) {
-                        $instance->orderBy($request->sort_key, $request->sort);
+
+                        $instance->orderBy('price', $request->sort);
                     } else {
                         $instance->latest();
                     }
@@ -109,8 +112,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $Sizes = Size::get();
-        $Colors = Color::get();
+        $Sizes = Size::where('status',1)->get();
+        $Colors = Color::where('status',1)->get();
 
         // $Categories = Category::where('status',1)->whereDoesntHave('children')->with('parent')->whereNotNull('parent_id')->get();
         $MainCategories = Category::

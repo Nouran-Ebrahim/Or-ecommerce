@@ -59,16 +59,16 @@
 <title>{{ setting('title_'.lang()) }}</title>
 <link rel="canonical" href="{{ url()->full() }}">
 <link rel="sitemap" href="/sitemap.xml" title="Sitemap" type="application/xml">
-<link href="{{ asset(setting('logo')) }}" rel="shortcut icon">
+<link href="{{ asset(setting('logo_dark')) }}" rel="shortcut icon">
 <meta name="robots" content="max-snippet:-1,max-image-preview:large,max-video-preview:-1">
 <meta name="description" content="{{ strip_tags(setting('desc')) }}">
 <meta name="keywords" content="{{ strip_tags(setting('keywords')) }}">
 <meta name="author" content="{{ setting('title_'.lang()) }}">
-<meta name="image" content="{{ asset(setting('logo')) }}">
+<meta name="image" content="{{ asset(setting('logo_dark')) }}">
 <meta property="og:title" content="{{ setting('title_'.lang()) }}">
 <meta property="og:description" content="{{ strip_tags(setting('desc')) }}">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="{{ asset(setting('logo')) }}">
+<meta property="og:image" content="{{ asset(setting('logo_dark')) }}">
 <meta property="og:url" content="{{ url()->full() }}">
 <meta property="og:site_name" content="{{ setting('title_'.lang()) }}">
 <meta property="og:type" content="website">
@@ -79,9 +79,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="apple-touch-icon" sizes="180x180" href="{{ asset(setting('logo')) }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ asset(setting('logo')) }}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ asset(setting('logo')) }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset(setting('logo_dark')) }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset(setting('logo_dark')) }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset(setting('logo_dark')) }}">
 
 {!! setting('snapchat_services') !!}
 {!! setting('twitter_services') !!}

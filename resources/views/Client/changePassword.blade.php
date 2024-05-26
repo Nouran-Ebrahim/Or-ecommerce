@@ -67,7 +67,7 @@
                                 <h4>@lang('trans.Edit PROFILE')</h4>
                                 <p>@lang('trans.Edit your profile details')</p>
                             </div>
-                            <a href="{{ route('client.profile') }}" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
+                            <a href="javascript:;" id="viewAccount" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab"
@@ -155,13 +155,14 @@
                                                 <p>@lang('trans.Coupon')</p>
                                                 <p id="coupon"></p>
                                             </div>
-                                            <div class="price-row">
-                                                <p>@lang('trans.Vat')</p>
-                                                <p id="vat"></p>
-                                            </div>
+
                                             <div class="price-row couponInfo" style="display: none">
                                                 <p>@lang('trans.Sub Total after coupon')</p>
                                                 <p id="sub_total_after_coupon"></p>
+                                            </div>
+                                            <div class="price-row">
+                                                <p>@lang('trans.Vat')</p>
+                                                <p id="vat"></p>
                                             </div>
                                             <div class="price-row shippingCountainer">
                                                 <p>@lang('trans.SHIPPING')</p>
@@ -207,7 +208,8 @@
                                     <h4>@lang('trans.ADD ADDRESS')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a href="{{ route('client.address.create') }}" class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
+                                <a href="{{ route('client.address.create') }}"
+                                    class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
                             </div>
                         </section>
                         @if ($defaultAddress)
@@ -280,7 +282,8 @@
                                 @enderror
                                 <div class="actions">
                                     <button type="submit" class="btn save-changes">@lang('trans.save')</button>
-                                    <a href="{{ route('client.profile') }}" class="btn cancel-changes">@lang('trans.cancel')</a>
+                                    <a id="cancelEditPassword" href="javascript:;"
+                                        class="btn cancel-changes">@lang('trans.cancel')</a>
                                 </div>
                             </form>
                         </section>
@@ -295,6 +298,28 @@
 @endsection
 @push('js')
     <script>
+        $('#cancelEditPassword').on('click', function() {
+            window.location.href = "{{ route('client.profile') }}";
+            localStorage.setItem('cancelEditProfile', true);
+        })
+    </script>
+    <script>
+        $('#viewAccount').on('click', function(e) {
+            var activeTab = $('.nav-link.profile.active');
+            var activePane = $('.tab-pane.active.show');
+
+            // Remove 'active' class from the currently active tab
+            activeTab.removeClass('active');
+
+            // Remove 'active show' classes from the currently active tab pane
+            activePane.removeClass('active show');
+
+            // Add 'active' class to the edit tab
+            $('#v-pills-edit-tab').addClass('active');
+
+            // Add 'active show' classes to the edit tab pane
+            $('#v-pills-edit').addClass('active show');
+        })
         $(".view--btn").on("click", function() {
             const summarySection = $(".summary--section");
             const viewBtnImg = $(".view--btn-img", this);

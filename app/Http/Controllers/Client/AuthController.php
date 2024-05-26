@@ -13,23 +13,44 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\PhoneLength;
 use App\Functions\WhatsApp;
+use App\Rules\UniquePhone;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
         // dd($request->all());
-        // $Country = Country::find($request->country_id);
-        // dd(session()->get('client_id'));
+      
         $client_id = client_id();
-        
-        $this->validate($request, [
-            'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8), "exists:clients,phone", 'numeric'],
+        $request->merge([
+            'newphone' => $request->phone_code . $request->phone
+        ]);
+
+        $validator = validator($request->all(), [
+
+            'phone' => ["required", 'numeric', new PhoneLength($request->input('country_code'), $max = 8)],
+            'newphone' => ["exists:clients,newphone"],
             'password' => 'required|min:6',
         ]);
-        if (auth('client')->attempt(['country_code' => $request['country_code'], 'phone' => $request['phone'], 'password' => $request['password'], 'status' => 1])) {
+        $validator->after(function ($validator) {
+            if ($validator->errors()->has('newphone')) {
+                $validator->errors()->add('phone', $validator->errors()->first('newphone'));
+                $validator->errors()->forget('newphone');
+            }
+        });
+        if ($validator->fails()) {
+        
+            return redirect()->back()->withInput($request->all())->withErrors($validator->getMessageBag());
+
+        }
+        // $this->validate($request, [
+        //     'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8), "exists:clients,phone", 'numeric'],
+
+        //     'password' => 'required|min:6',
+        // ]);
+        if (auth('client')->attempt(['newphone' => $request['newphone'], 'password' => $request['password'], 'status' => 1])) {
             // dd(1);
-            
+
             toast(__('trans.loginSuccessfully'), 'success');
             // dd($client_id);
             if (client_id()) {
@@ -67,14 +88,26 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         // dd($request->all());
+        $request->merge([
+            'newphone' => $request->register_phone_code . $request->register_phone
+        ]);
         $validator = validator($request->all(), [
             'last_name' => 'required|string',
             'first_name' => 'required|string',
-            'register_phone' => ["required", 'unique:clients,phone', 'numeric', new PhoneLength($request->input('register_country_code'), $max = 8)],
-            'password' => 'required|min:6',
-            'email' => 'required|email'
+            'register_country_code' => "required",
+            'register_phone' => ["required", 'numeric', new PhoneLength($request->input('register_country_code'), $max = 8)],
+            'newphone' => ['unique:clients,newphone'],
+            'register_password' => 'required|min:6',
+            'email' => 'required|email|unique:clients,email'
         ]);
+        $validator->after(function ($validator) {
+            if ($validator->errors()->has('newphone')) {
+                $validator->errors()->add('register_phone', $validator->errors()->first('newphone'));
+                $validator->errors()->forget('newphone');
+            }
+        });
         if ($validator->fails()) {
+            // dd($validator->getMessageBag());
             return redirect()->back()->withInput($request->all())->withErrors($validator->getMessageBag());
 
         }
@@ -85,7 +118,9 @@ class AuthController extends Controller
             'phone_code' => $request->register_phone_code,
             'country_code' => $request->register_country_code,
             'phone' => $request->register_phone,
-            'password' => bcrypt($request->password),
+            'newphone' => $request->newphone,
+            'password' => bcrypt($request->register_password),
+            'email' => $request->email,
         ]);
         auth('client')->login($client);
         toast(__('trans.profileCompleted'), 'success');
@@ -116,7 +151,7 @@ class AuthController extends Controller
         $Client = Client::where('id', decrypt($request->ssh))->first();
         // dd($Client);
         $Client->update([
-            'otp' => WhatsApp::SendOTP($Client->phone_code . $Client->phone)
+            'otp' => WhatsApp::SendOTP($Client->newphone)
         ]);
     }
     public function restPasswordPage($id, Request $request)
@@ -160,13 +195,33 @@ class AuthController extends Controller
     }
     public function forget(Request $request)
     {
-        $this->validate($request, [
-            'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8), "exists:clients,phone"],
+        // $this->validate($request, [
+        //     'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8), "exists:clients,phone"],
+        // ]);
+        $request->merge([
+            'newphone' => $request->phone_code . $request->phone
         ]);
-        $Client = Client::where('phone', $request->phone)->where('country_code', $request->country_code)->first();
+
+        $validator = validator($request->all(), [
+
+            'phone' => ["required", 'numeric', new PhoneLength($request->input('country_code'), $max = 8)],
+            'newphone' => ["exists:clients,newphone"],
+        ]);
+        $validator->after(function ($validator) {
+            if ($validator->errors()->has('newphone')) {
+                $validator->errors()->add('phone', $validator->errors()->first('newphone'));
+                $validator->errors()->forget('newphone');
+            }
+        });
+        if ($validator->fails()) {
+            // dd($validator->getMessageBag());
+            return redirect()->back()->withInput($request->all())->withErrors($validator->getMessageBag());
+
+        }
+        $Client = Client::where('newphone', $request->newphone)->first();
 
         $Client->update([
-            'otp' => WhatsApp::SendOTP($request->phone_code . $request->phone)
+            'otp' => WhatsApp::SendOTP($request->newphone)
         ]);
         // dd($link);
         // auth('client')->login($Client);

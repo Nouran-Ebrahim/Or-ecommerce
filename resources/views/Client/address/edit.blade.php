@@ -55,28 +55,30 @@
         <div class="row align-items-start">
             <div class="col-lg-4 col-12">
                 <div class="nav flex-nav-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link profile" id="v-pills-profile-tab" data-bs-toggle="pill"
+                    <button class="nav-link profile " id="v-pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                        aria-selected="true">
+                        @lang('trans.My PROFILE')
+                    </button>
+                    <button class="nav-link profile" id="v-pills-orders-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-orders" type="button" role="tab" aria-controls="v-pills-orders"
                         aria-selected="false">
-                        <button class="nav-link profile" id="v-pills-orders-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-orders" type="button" role="tab" aria-controls="v-pills-orders"
-                            aria-selected="false">
-                            @lang('trans.ORDERS')
-                        </button>
-                        <a href="{{ route('client.address.index') }}" class="nav-link profile active"
-                            id="v-pills-address-tab" data-bs-toggle="pill" data-bs-target="#v-pills-address" type="button"
-                            role="tab" aria-controls="v-pills-address" aria-selected="true">
-                            @lang('trans.ADDRESS')
-                        </a>
-                        <button class="nav-link profile" id="v-pills-edit-tab" data-bs-toggle="pill"
-                            data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit"
-                            aria-selected="false">
-                            @lang('trans.Edit PROFILE')
-                        </button>
-                        <a href="{{ route('client.logout') }}" class="nav-link profile" id="v-pills-logout-tab"
-                            role="tab" aria-controls="v-pills-logout" aria-selected="false">
-                            @lang('trans.LOGOUT')
-                        </a>
+                        @lang('trans.ORDERS')
+                    </button>
+                    <a href="{{ route('client.address.index') }}" class="nav-link profile active" id="v-pills-address-tab"
+                        data-bs-toggle="pill" data-bs-target="#v-pills-address" type="button" role="tab"
+                        aria-controls="v-pills-address" aria-selected="true">
+                        @lang('trans.ADDRESS')
+                    </a>
+                    <button class="nav-link profile" id="v-pills-edit-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit"
+                        aria-selected="false">
+                        @lang('trans.Edit PROFILE')
+                    </button>
+                    <a href="{{ route('client.logout') }}" class="nav-link profile" id="v-pills-logout-tab" role="tab"
+                        aria-controls="v-pills-logout" aria-selected="false">
+                        @lang('trans.LOGOUT')
+                    </a>
                 </div>
             </div>
             <div class="col-lg-8 col-12">
@@ -108,7 +110,7 @@
                                 <h4>@lang('trans.Edit PROFILE')</h4>
                                 <p>@lang('trans.Edit your profile details')</p>
                             </div>
-                            <a href="{{ route('client.profile') }}" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
+                            <a id="viewAccount" href="javascript:;" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
 
                         </div>
                     </div>
@@ -196,13 +198,14 @@
                                                 <p>@lang('trans.Coupon')</p>
                                                 <p id="coupon"></p>
                                             </div>
-                                            <div class="price-row">
-                                                <p>@lang('trans.Vat')</p>
-                                                <p id="vat"></p>
-                                            </div>
+
                                             <div class="price-row couponInfo" style="display: none">
                                                 <p>@lang('trans.Sub Total after coupon')</p>
                                                 <p id="sub_total_after_coupon"></p>
+                                            </div>
+                                            <div class="price-row">
+                                                <p>@lang('trans.Vat')</p>
+                                                <p id="vat"></p>
                                             </div>
                                             <div class="price-row shippingCountainer">
                                                 <p>@lang('trans.SHIPPING')</p>
@@ -219,7 +222,7 @@
                             </section>
                         @else
                             <p class="mb-2">
-                                No orders Now
+                                @lang('trans.No orders Now')
                             </p>
                         @endif
                     </div>
@@ -227,7 +230,7 @@
                         aria-labelledby="v-pills-address-tab" tabindex="0">
                         <section class="addresses-section">
                             <h2>@lang('trans.ADD ADDRESS')</h2>
-                            <p>Add new addresses</p>
+                            <p>@lang('trans.ADD ADDRESS')</p>
 
                         </section>
 
@@ -263,16 +266,21 @@
                                 </div>
 
                                 <div class="input-name">
-                                    <input style="   width: 48%;" type="text" value="{{ $address->flat }}"
-                                        name="flat" placeholder="@lang('trans.flat')" />
-                                    @error('flat')
-                                        <p class="alert alert-danger">{{ $message }}</p>
-                                    @enderror
-                                    <input style="  width: 48%;" value="{{ $address->zone }}" type="text"
-                                        name="zone" placeholder="@lang('trans.district')" />
-                                    @error('zone')
-                                        <p class="alert alert-danger">{{ $message }}</p>
-                                    @enderror
+                                    <div style="width: 48%">
+                                        <input value="{{ $address->flat }}" style="   width: 100%;" type="text"
+                                            name="flat" placeholder="@lang('trans.flat')" />
+                                        @error('flat')
+                                            <p class="alert alert-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div style="width: 48%">
+                                        <input value="{{ $address->zone }}" style="  width: 100%;" type="text"
+                                            name="zone" placeholder="@lang('trans.district')" />
+                                        @error('zone')
+                                            <p class="alert alert-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
                                 </div>
                                 <input class="contacts-input" value="{{ $address->road }}" type="text"
                                     name="road" placeholder="@lang('trans.road')" />
@@ -282,6 +290,11 @@
                                 <input class="contacts-input" value="{{ $address->building_no }}" name="building_no"
                                     type="text" placeholder="@lang('trans.building_no')" />
                                 @error('building_no')
+                                    <p class="alert alert-danger">{{ $message }}</p>
+                                @enderror
+                                <input class="contacts-input" value="{{ $address->note }}" name="note"
+                                    type="text" placeholder="@lang('trans.note')" />
+                                @error('note')
                                     <p class="alert alert-danger">{{ $message }}</p>
                                 @enderror
                                 <div class="d-flex">
@@ -298,7 +311,7 @@
                                 <div class="actions">
                                     <button class="btn save-changes d-flex align-items-center justify-content-center"
                                         type="submit">@lang('trans.save')</button>
-                                    <a href="{{ route('client.profile') }}"
+                                    <a href="javascript:;" id="cancelEditAddress"
                                         class="btn cancel-changes">@lang('trans.cancel')</a>
                                 </div>
                             </form>
@@ -314,14 +327,16 @@
                                     <h4>@lang('trans.EDIT PROFILE')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a type="button" href="{{ route('client.edit-profile') }}" class="btn">@lang('trans.EDIT PROFILE')</a>
+                                <a type="button" href="{{ route('client.edit-profile') }}"
+                                    class="btn">@lang('trans.EDIT PROFILE')</a>
                             </div>
                             <div class="edit-profile-item">
                                 <div class="details">
                                     <h4>@lang('trans.EDIT PASSWORDS')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a type="button" href="{{ route('client.change.password') }}" class="btn">@lang('trans.EDIT PASSWORDS')</a>
+                                <a type="button" href="{{ route('client.change.password') }}"
+                                    class="btn">@lang('trans.EDIT PASSWORDS')</a>
                             </div>
                         </section>
 
@@ -335,66 +350,32 @@
     </section>
 @endsection
 
-{{-- @push('css')
-<style>
-    #map .gm-style-iw-d {
-        color: #000;
-    }
 
-    #map input[type=text] {
-        background-color: #fff;
-        border: 0;
-        border-radius: 2px;
-        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-        margin: 10px;
-        padding: 0 0.5em;
-        font: 400 18px Roboto, Arial, sans-serif;
-        overflow: hidden;
-        line-height: 40px;
-        margin-right: 0;
-        min-width: 25%;
-    }
-
-    #map input[type=button] {
-        background-color: #fff;
-        border: 0;
-        border-radius: 2px;
-        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-        margin: 10px;
-        padding: 0 0.5em;
-        font: 400 18px Roboto, Arial, sans-serif;
-        overflow: hidden;
-        height: 40px;
-        cursor: pointer;
-        margin-left: 5px;
-    }
-
-    #map input[type=button]:hover {
-        background: rgb(235, 235, 235);
-    }
-
-    #map input[type=button].button-primary {
-        background-color: #1a73e8;
-    }
-
-    #map input[type=button].button-primary:hover {
-        background-color: #1765cc;
-    }
-
-    #map input[type=button].button-secondary {
-        background-color: white;
-        color: #1a73e8;
-    }
-
-    #map input[type=button].button-secondary:hover {
-        background-color: #d2e3fc;
-    }
-
-</style>
-@endpush --}}
 
 
 @push('js')
+    <script>
+        $('#viewAccount').on('click', function(e) {
+            var activeTab = $('.nav-link.profile.active');
+            var activePane = $('.tab-pane.active.show');
+
+            // Remove 'active' class from the currently active tab
+            activeTab.removeClass('active');
+
+            // Remove 'active show' classes from the currently active tab pane
+            activePane.removeClass('active show');
+
+            // Add 'active' class to the edit tab
+            $('#v-pills-edit-tab').addClass('active');
+
+            // Add 'active show' classes to the edit tab pane
+            $('#v-pills-edit').addClass('active show');
+        })
+        $('#cancelEditAddress').on('click', function() {
+            window.location.href = "{{ route('client.profile') }}";
+            localStorage.setItem('cancelEditAddress', true);
+        })
+    </script>
     <script>
         $(".view--btn").on("click", function() {
             const summarySection = $(".summary--section");

@@ -109,6 +109,13 @@ return [
     'uuid' => ':attribute يجب أن يكون بصيغة UUID سليمة.',
 
     'attributes' => [
+        "zone"=>"المنطقة",
+        "register_phone"=>"الهاتف",
+        "register_password"=>"كلمة المرور",
+        "delivery_id"=>"طريقة التوصيل",
+        "road"=>"الطريق",
+        "building_no"=>"رقم المبني",
+        "newphone"=>"الهاتف",
         'product_ids' => 'المنتجات',
         'reason' => 'سبب',
         'name_ar' => 'الإسم بالعربية',

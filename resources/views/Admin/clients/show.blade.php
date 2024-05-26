@@ -12,9 +12,9 @@
                     </div>
                 </div> --}}
                 <div class="col-lg-7 col-md-7 col-sm-6">
-                    <h2 class="box-title mt-5 bold">{{ $Client['first_name'] .' '.$Client['last_name'] }}</h2>
-                    <h2 class="mt-5 ">{{ $Client['phone'] }}</h2>
-                    <h2 class="mt-5 ">{{ $Client['email'] }}</h2>
+                    <h2 class="box-title mt-5 bold">@lang('trans.name') : {{ $Client['first_name'] .' '.$Client['last_name'] }}</h2>
+                    <h2 class="mt-5 ">@lang('trans.phone') : {{ $Client['phone'] }}</h2>
+                    <h2 class="mt-5 ">@lang('trans.email') : {{ $Client['email'] }}</h2>
                 </div>
             </div>
         </div>

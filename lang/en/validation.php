@@ -103,6 +103,13 @@ return [
     'url' => 'The :attribute format is invalid.',
     'captcha' => 'The :attribute format is invalid.',
     'attributes' => [
+        "zone"=>"Zone",
+        "delivery_id"=>"Delivery Method",
+        "road"=>"Road",
+        "register_phone"=>"Phone",
+        "register_password"=>"Password",
+        "building_no"=>"Building number",
+        "newphone"=>"phone",
         'product_ids' => 'Products',
         'name_ar' => 'Name in arabic',
         'name_en' => 'Name in english',

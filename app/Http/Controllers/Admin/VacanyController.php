@@ -21,7 +21,7 @@ class VacanyController extends Controller
             return DataTables::of($Models)
                 ->addColumn('action', function ($Model) {
                     return '
-                            <a href="' . route('admin.vacancy.edit', ['vacancy' => $Model]) . '"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="' . route('admin.vacancy.edit', $Model->id) . '"><i class="fa-solid fa-pen-to-square"></i></a>
                             <form class="formDelete" method="POST" action="' . route('admin.vacancy.destroy', ['vacancy' => $Model]) . '">
                                 ' . csrf_field() . '
                                 <input name="_method" type="hidden" value="DELETE">
@@ -91,8 +91,9 @@ class VacanyController extends Controller
         return view('Admin.sliders.show', compact('vacancy'));
     }
 
-    public function edit($id, VacancyRequest $request)
+    public function edit($id)
     {
+        // dd($id);
         $vacancy = Vacancy::latest()->findOrFail($id);
 
         return view('Admin.vacancy.edit', compact('vacancy'));

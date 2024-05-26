@@ -9,7 +9,7 @@ class StoreSocialMediaIconRequest extends BaseRequest
     public function rules()
     {
         return [
-            'link' => ['required', 'string'],
+            'link' => ['required', 'url'],
             'icon' => ['required', 'string'],
         ];
     }

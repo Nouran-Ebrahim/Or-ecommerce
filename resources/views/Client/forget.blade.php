@@ -225,7 +225,10 @@
             preferredCountries: ['sa']
         });
         window.iti = iti;
-        iti.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
+        var initialCountryCode = "{{ old('country_code', 'SA') }}";
+        var initialPhoneCode = "{{ old('phone_code', 966) }}";
+        iti.setCountry(initialCountryCode.toLowerCase());
+        // iti.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
         document.getElementById("phone").addEventListener("countrychange", function() {
 
             document.getElementById("phone").value = '';
@@ -233,6 +236,8 @@
                 .toUpperCase();
             document.getElementById("phone_code").value = iti.getSelectedCountryData().dialCode;
         })
+        document.getElementById("country_code").value = initialCountryCode;
+        document.getElementById("phone_code").value = initialPhoneCode;
     </script>
     {{-- <script>
         var iti = window.intlTelInput(document.querySelector("#phone"), {

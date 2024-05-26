@@ -124,8 +124,12 @@ class HomeController extends Controller
             })
             ->when(request('search') ?? null, function ($query) {
                 $searchTerm = request('search');
+                if (lang() == "ar") {
+                    return $query->where('title_ar', 'LIKE', "%{$searchTerm}%");
+                } else {
+                    return $query->Where('title_en', 'LIKE', "%{$searchTerm}%");
+                }
 
-                return $query->where('title_ar', 'LIKE', "%{$searchTerm}%")->orWhere('title_en', 'LIKE', "%{$searchTerm}%");
             })
             ->paginate(50);
         $Sizes = Size::Active()->get();
@@ -157,9 +161,13 @@ class HomeController extends Controller
             })
             ->when(request('search'), function ($query) {
                 $searchTerm = request('search');
-                $query->where('title_ar', 'LIKE', "%{$searchTerm}%")->orWhere('title_en', 'LIKE', "%{$searchTerm}%");
+                if (lang() == "ar") {
+                    return $query->where('title_ar', 'LIKE', "%{$searchTerm}%");
+                } else {
+                    return $query->Where('title_en', 'LIKE', "%{$searchTerm}%");
+                }
             })
-            
+
             ->count();
 
         $ProductsBestSelling = Product::where('status', 1)->where('most_selling', 1)->whereHas("Colors.Header")->whereHas("Colors.Gallery")->get();
@@ -525,13 +533,23 @@ class HomeController extends Controller
     }
     public function ClientReview(Request $request)
     {
-        ProductReview::create([
-            "client_id" => client_id(),
-            "product_id" => $request->product_id,
-            'rate' => $request->rate,
-            'comment' => $request->comment,
-        ]);
-        return redirect()->back()->with('review', trans('trans.Your Review Has Been Added Successfully'));
+        if ($request->rate == "0") {
+            $this->validate($request, [
+                "rate" => "required"
+            ]);
+            return redirect()->back()->with('rating', trans('trans.Rating required minimum 1 sater'));
+        } else {
+            ProductReview::create([
+                "client_id" => client_id(),
+                "product_id" => $request->product_id,
+                'rate' => $request->rate,
+                'comment' => $request->comment,
+            ]);
+            return redirect()->back()->with('review', trans('trans.Your Review Has Been Added Successfully'));
+
+        }
+
+
     }
     public function confirm(Request $request)
     {
@@ -610,7 +628,7 @@ class HomeController extends Controller
     public function cart()
     {
         $data = CalcCart();
-// dd($data['carts']);
+        // dd($data['carts']);
         return view('Client.cart', [
             'Carts' => $data['carts'],
             'subTotal' => $data['subTotal'],
@@ -690,25 +708,49 @@ class HomeController extends Controller
     public function submit(Request $request)
     {
         // dd($request->all());
+        $request->merge([
+            'newphone' => $request->phone_code . $request->phone
+        ]);
         if (session()->has('client_id')) {
-            $this->validate($request, [
-                'last_name' => 'required|string',
-                'first_name' => 'required|string',
-                'payment_id' => 'required',
-                'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8)],
-                'email' => 'required|email'
-            ]);
-            $client = Client::where('phone', $request->phone)->where('phone_code', $request->phone_code)->where('country_code', $request->country_code)->exists();
-            if ($client) {
-                $client_id = Client::where('phone', $request->phone)->where('phone_code', $request->phone_code)->where('country_code', $request->country_code)->first()->id;
-            } else {
-                $this->validate($request, [
+
+            $this->validate(
+                $request,
+                [
                     'last_name' => 'required|string',
                     'first_name' => 'required|string',
                     'payment_id' => 'required',
-                    'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8), 'unique:clients,phone'],
-                    'email' => 'required|email'
-                ]);
+                    'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8)],
+                    'email' => 'required|email',
+                    'country_id' => 'required|exists:countries,id',
+                    'region_id' => 'required|exists:regions,id',
+                    'flat' => 'nullable|numeric',
+                    'zone' => 'required_if:delivery_id,1',
+                    'road' => 'required_if:delivery_id,1',
+                    'building_no' => 'required_if:delivery_id,1|numeric',
+                    'floor_no' => 'nullable|numeric',
+                    'note' => 'nullable'
+                ]
+                ,
+                [
+                    "zone.required_if" => lang() == "ar" ? "المنطقه مطلوب" : "The zone field is required",
+                    "road.required_if" => lang() == "ar" ? "الطريق مطلوب" : "The road field is required",
+                    "building_no.required_if" => lang() == "ar" ? "رقم المبني مطلوب" : "The building number field is required"
+
+                ]
+            );
+
+
+            $client = Client::where('newphone', $request->newphone)->where('email', $request->email)->exists();
+            if ($client) {
+                $client_id = Client::where('newphone', $request->newphone)->where('email', $request->email)->first()->id;
+            } else {
+                // $this->validate($request, [
+                //     'last_name' => 'required|string',
+                //     'first_name' => 'required|string',
+                //     'payment_id' => 'required',
+                //     'phone' => ["required", new PhoneLength($request->input('country_code'), $max = 8)],
+                //     'email' => 'required|email'
+                // ]);
                 $newClient = Client::create([
                     "first_name" => $request->first_name,
                     "last_name" => $request->last_name,
@@ -716,40 +758,41 @@ class HomeController extends Controller
                     'country_code' => $request->country_code,
                     'phone_code' => $request->phone_code,
                     'phone' => $request->phone,
+                    'newphone' => $request->newphone,
                     // 'password' => bcrypt(rand(1000, 9999)),
                 ]);
                 $client_id = $newClient->id;
             }
             if ($request->delivery_id == 1) {
-                if (isset($request->address_id)) {
-                    $address_id = $request->address_id;
-                } else {
-                    $this->validate($request, [
-                        'country_id' => 'required|exists:countries,id',
-                        'region_id' => 'required|exists:regions,id',
-                        'flat' => 'nullable',
-                        'zone' => 'required',
-                        'road' => 'required',
-                        'payment_id' => 'required',
-                        'building_no' => 'required',
-                        'floor_no' => 'nullable',
-                        'note' => 'nullable'
-                    ]);
-                    $Address = Address::create([
-                        'client_id' => $client_id,
-                        'default' => isset($request->default) ? 1 : 0,
-                        'country_id' => $request->country_id,
-                        'region_id' => $request->region_id,
-                        'flat' => $request->flat,
-                        'zone' => $request->zone,
-                        'road' => $request->road,
-                        'building_no' => $request->building_no,
-                    ]);
-                    $address_id = $Address->id;
-                }
 
 
+                // $this->validate($request, [
+                //     'country_id' => 'required|exists:countries,id',
+                //     'region_id' => 'required|exists:regions,id',
+                //     'flat' => 'nullable|numeric',
+                //     'zone' => 'required',
+                //     'road' => 'required',
+                //     'payment_id' => 'required',
+                //     'building_no' => 'required|numeric',
+                //     'floor_no' => 'nullable|numeric',
+                //     'note' => 'nullable'
+                // ]);
+                $Address = Address::create([
+                    'client_id' => $client_id,
+                    'default' => isset($request->default) ? 1 : 0,
+                    'country_id' => $request->country_id,
+                    'region_id' => $request->region_id,
+                    'flat' => $request->flat,
+                    'zone' => $request->zone,
+                    'road' => $request->road,
+                    'building_no' => $request->building_no,
+                    'note' => $request->note,
+                ]);
+                $address_id = $Address->id;
             } else {
+                $this->validate($request, [
+                    'payment_id' => 'required',
+                ]);
                 $address_id = null;
             }
             $oldCart = Cart::where('client_id', $client_id)->get();
@@ -766,18 +809,26 @@ class HomeController extends Controller
         } else {
             $client_id = auth('client')->user()->id;
             if ($request->delivery_id == 1) {
-                if (isset($request->address_id)) {
+                $addressLogined = auth('client')->user()->addresses;
+                // dd($addressLogined);
+                if ($addressLogined->count() > 0) {
+                    // dd(1);
+                    $this->validate($request, [
+                        'payment_id' => 'required',
+                        'address_id' => 'required',
+
+                    ]);
                     $address_id = $request->address_id;
                 } else {
                     $this->validate($request, [
                         'country_id' => 'required|exists:countries,id',
                         'region_id' => 'required|exists:regions,id',
-                        'flat' => 'nullable',
+                        'flat' => 'nullable|numeric',
                         'payment_id' => 'required',
                         'zone' => 'required',
                         'road' => 'required',
-                        'building_no' => 'required',
-                        'floor_no' => 'nullable',
+                        'building_no' => 'required|numeric',
+                        'floor_no' => 'nullable|numeric',
                         'note' => 'nullable'
                     ]);
                     $Address = Address::create([
@@ -789,12 +840,16 @@ class HomeController extends Controller
                         'zone' => $request->zone,
                         'road' => $request->road,
                         'building_no' => $request->building_no,
+                        'note' => $request->note,
                     ]);
                     $address_id = $Address->id;
                 }
 
 
             } else {
+                $this->validate($request, [
+                    'payment_id' => 'required',
+                ]);
                 $address_id = null;
             }
 
@@ -835,6 +890,7 @@ class HomeController extends Controller
             'discount' => $discount,
             'discount_percentage' => 0,
             'vat' => $request->vat,
+            'notes'=>$request->notes,
             'vat_percentage' => setting('VAT'),
             'coupon' => $request->coupon,
             'coupon_percentage' => 0,
@@ -866,7 +922,7 @@ class HomeController extends Controller
 
 
         if ($Order) {
-            if ($request->payment_id == 1) {
+            if ($Order->payment_id == 1) {
 
                 WhatsApp::SendOrder($Order);
                 try {
@@ -955,13 +1011,13 @@ class HomeController extends Controller
             if ($coupon->from < now() && $coupon->to > now()) {
                 if ($coupon->type == "discount") {
                     if ($coupon->discount < $request->subTotal) {
-                        $subTotalAfterCoupon = number_format($request->subTotal - ($coupon->discount * Country()->currancy_value), Country()->decimals, '.', '');
+                        $subTotalAfterCoupon = number_format(($request->subTotal - $coupon->discount) * Country()->currancy_value, Country()->decimals, '.', '');
                         $couponValue = number_format($coupon->discount * Country()->currancy_value, Country()->decimals, '.', '');
-                        // $vat = number_format($subTotal * (setting('VAT') / 100), Country()->decimals, '.', '');
+                        $vat = number_format($subTotalAfterCoupon * (setting('VAT') / 100), Country()->decimals, '.', '');
                         $charge_cost = $request->charge_cost;
-                        $total = number_format($charge_cost + $request->vat + $subTotalAfterCoupon, Country()->decimals, '.', '');
+                        $total = number_format($charge_cost + $vat + $subTotalAfterCoupon, Country()->decimals, '.', '');
                         $message = "coupon applied sucsessfly";
-                        return response()->json(['status' => true, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
+                        return response()->json(['status' => true, 'message' => $message, 'vat' => $vat, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
                     } else {
                         $message = "coupon value greater than sub total";
                         $subTotalAfterCoupon = number_format(0 * Country()->currancy_value, Country()->decimals, '.', '');
@@ -969,18 +1025,18 @@ class HomeController extends Controller
                         // $vat = number_format($subTotal * (setting('VAT') / 100), Country()->decimals, '.', '');
                         $charge_cost = $request->charge_cost;
                         $total = number_format($charge_cost + $request->vat + $request->subTotal, Country()->decimals, '.', '');
-                        return response()->json(['status' => true, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
+                        return response()->json(['status' => false, 'vat' => $request->vat, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
                     }
                 } else {
                     // type percentage
 
                     $message = "coupon applied sucsessfly";
-                    $subTotalAfterCoupon = ($request->subTotal) * (1 - ($coupon->percent_off / 100));
+                    $subTotalAfterCoupon = number_format((($request->subTotal) * (1 - ($coupon->percent_off / 100))) * Country()->currancy_value, Country()->decimals, '.', '');
                     $couponValue = number_format(($request->subTotal * ($coupon->percent_off / 100)) * Country()->currancy_value, Country()->decimals, '.', '');
-                    // $vat = number_format($subTotal * (setting('VAT') / 100), Country()->decimals, '.', '');
+                    $vat = number_format($subTotalAfterCoupon * (setting('VAT') / 100), Country()->decimals, '.', '');
                     $charge_cost = $request->charge_cost;
-                    $total = number_format($charge_cost + $request->vat + $subTotalAfterCoupon, Country()->decimals, '.', '');
-                    return response()->json(['status' => true, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
+                    $total = number_format($charge_cost + $vat + $subTotalAfterCoupon, Country()->decimals, '.', '');
+                    return response()->json(['status' => true, 'vat' => $vat, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
                 }
 
             } else {
@@ -990,7 +1046,7 @@ class HomeController extends Controller
                 // $vat = number_format($subTotal * (setting('VAT') / 100), Country()->decimals, '.', '');
                 $charge_cost = $request->charge_cost;
                 $total = number_format($charge_cost + $request->vat + $request->subTotal, Country()->decimals, '.', '');
-                return response()->json(['status' => true, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'vat' => $request->vat, 'couponValue' => $couponValue]);
+                return response()->json(['status' => false, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'vat' => $request->vat, 'couponValue' => $couponValue]);
             }
 
         } else {
@@ -1000,7 +1056,7 @@ class HomeController extends Controller
             // $vat = number_format($subTotal * (setting('VAT') / 100), Country()->decimals, '.', '');
             $charge_cost = $request->charge_cost;
             $total = number_format($charge_cost + $request->vat + $request->subTotal, Country()->decimals, '.', '');
-            return response()->json(['status' => false, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
+            return response()->json(['status' => false, 'vat' => $request->vat, 'message' => $message, 'total' => $total, 'subTotalAfterCoupon' => $subTotalAfterCoupon, 'couponValue' => $couponValue]);
         }
 
 

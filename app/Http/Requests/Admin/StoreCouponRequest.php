@@ -9,7 +9,7 @@ class StoreCouponRequest extends BaseRequest
     public function rules()
     {
         return [
-            'code' => ['required', 'string'],
+            'code' => ['required', 'string','unique:coupons,code'],
             'type' => ['required', 'string'],
 
             'discount' => ['nullable', 'required_without:percent_off', 'numeric'],

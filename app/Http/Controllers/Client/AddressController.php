@@ -58,14 +58,15 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         // dd(1);
+        // dd($request->all());
         $this->validate($request, [
             'country_id' => 'required|exists:countries,id',
             'region_id' => 'required|exists:regions,id',
-            'flat' => 'nullable',
+            'flat' => 'numeric|nullable',
             'zone' => 'required',
             'road' => 'required',
-            'building_no' => 'required',
-            'floor_no' => 'nullable',
+            'building_no' => 'required|numeric',
+            'floor_no' => 'numeric|nullable',
             'note' => 'nullable'
         ]);
         $defaultAddress = Address::where('client_id', auth('client')->user()->id)->where('default', 1)->latest()->first();
@@ -157,11 +158,11 @@ class AddressController extends Controller
         $this->validate($request, [
             'country_id' => 'required|exists:countries,id',
             'region_id' => 'required|exists:regions,id',
-            'flat' => 'nullable',
+            'flat' => 'numeric|nullable',
             'zone' => 'required',
             'road' => 'required',
-            'building_no' => 'required',
-            'floor_no' => 'nullable',
+            'building_no' => 'required|numeric',
+            'floor_no' => 'numeric|nullable',
             'note' => 'nullable'
         ]);
         $defaultAddress = Address::where('client_id', auth('client')->user()->id)->where('default', 1)->latest()->first();

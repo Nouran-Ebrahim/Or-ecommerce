@@ -226,7 +226,7 @@
             <ul class="social-media">
                 @foreach(SocialMediaIcons() as $data)
                 <li>
-                    <a href="{{$data->link}}">
+                    <a href="{{$data->link}}"  target="__blank">
                         <div style="font-size: 25px" class="social-icon-image-box">
                             <i class="{{$data->icon}}" ></i>
                         </div>

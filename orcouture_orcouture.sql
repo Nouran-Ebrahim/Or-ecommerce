@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2024 at 09:39 AM
+-- Generation Time: May 26, 2024 at 09:07 AM
 -- Server version: 10.6.16-MariaDB
 -- PHP Version: 8.1.26
 
@@ -55,15 +55,9 @@ CREATE TABLE `addresses` (
 --
 
 INSERT INTO `addresses` (`id`, `client_id`, `lat`, `long`, `additional_directions`, `created_at`, `updated_at`, `region_id`, `city`, `zone`, `block`, `road`, `building_no`, `flat`, `floor_no`, `apartment`, `type`, `note`, `default`, `country_id`) VALUES
-(39, 28, NULL, NULL, NULL, '2024-04-23 11:13:14', '2024-04-23 11:13:14', 94, NULL, 'hhh', NULL, 'ggg', '54', '5', NULL, NULL, NULL, NULL, 1, 2),
-(40, 31, NULL, NULL, NULL, '2024-05-07 04:37:53', '2024-05-07 04:37:53', 94, NULL, 'Incidunt placeat s', NULL, 'Ullamco repellendus', 'In veniam ut vel ut', 'Natus reprehenderit', NULL, NULL, NULL, NULL, 0, 2),
-(41, 28, NULL, NULL, NULL, '2024-05-08 12:17:39', '2024-05-08 12:17:39', 7, NULL, '44', NULL, '5', 'Molestiae saepe dele', '5', NULL, NULL, NULL, NULL, 1, 1),
-(42, 28, NULL, NULL, NULL, '2024-05-08 12:25:38', '2024-05-08 12:25:38', 94, NULL, 'hhh', NULL, '5', 'Deserunt perspiciati', '5', NULL, NULL, NULL, NULL, 1, 2),
-(43, 32, NULL, NULL, NULL, '2024-05-09 08:28:07', '2024-05-09 08:28:07', 95, NULL, '12', NULL, '12', '12', '12', NULL, NULL, NULL, NULL, 1, 2),
-(44, 28, NULL, NULL, NULL, '2024-05-09 12:35:04', '2024-05-09 12:35:04', 94, NULL, '8', NULL, 'ggg', 'ppppppp', '5', NULL, NULL, NULL, NULL, 1, 2),
-(45, 33, NULL, NULL, NULL, '2024-05-14 10:12:26', '2024-05-15 08:39:37', 94, NULL, '2', NULL, '3', '4', NULL, NULL, NULL, NULL, NULL, 1, 2),
-(46, 33, NULL, NULL, NULL, '2024-05-14 10:23:40', '2024-05-14 10:23:40', 96, NULL, 'El taif', NULL, 'Wazeer', '12', '1', NULL, NULL, NULL, NULL, 0, 2),
-(48, 33, NULL, NULL, NULL, '2024-05-14 10:32:45', '2024-05-14 10:35:06', 94, NULL, '1', NULL, '1', '1', '1', NULL, NULL, NULL, NULL, 0, 2);
+(61, 55, NULL, NULL, NULL, '2024-05-21 11:02:06', '2024-05-21 11:02:06', 94, NULL, 'cc', NULL, 'cc', '1', '1', NULL, NULL, NULL, 'cc', 0, 2),
+(64, 54, NULL, NULL, NULL, '2024-05-21 13:55:00', '2024-05-21 13:55:00', 94, NULL, '5', NULL, '5', '5', '5', NULL, NULL, NULL, '555', 1, 2),
+(65, 54, NULL, NULL, NULL, '2024-05-25 18:25:18', '2024-05-25 18:25:18', 94, NULL, '5', NULL, '5', '8', '5', NULL, NULL, NULL, NULL, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -95,11 +89,12 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `image`, `code`, `phone_code`, `country_code`, `status`, `theme`, `email_verified_at`, `password`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@admin.com', '123456', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$Ux05A7MTagNwS51QpRoEDe.nX1mKZyOy1xSLl1TjyeJP9O4Oy5i.2', 'D5zXfRD9AlxQ4htexnXjmTiRDcwej9TGUr72YLYKKnJ2Zhsc27Bgm7CN9HS6', NULL, '2022-10-09 11:52:15', '2023-11-28 13:48:05'),
+(1, 'admin', 'admin@admin.com', '123456', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$vxJoJYFMQozjBx8Qoe0u1uyG/NNXmHEFu/XWQ2NkxjckakNo4qrRy', 'uuVfknQfD7lf5ZSp9MBwTCBy7ZxxooD5dAe1J8QZWSoMHi6QnNwxctR9G6aw', NULL, '2022-10-09 11:52:15', '2024-05-22 13:18:26'),
 (3, 'test', 'test@gmail.com', '123456789', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$A3YAcGfNkKjpu2YhbTTOzujufTqhQ18vAwHVpwOqXl2XWXS.asA6S', NULL, '2024-03-10 14:55:44', '2024-03-10 14:55:01', '2024-03-10 14:55:44'),
 (4, 'aya', 'test@gmail.com', '1234567', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$LbwGDEMO4K30EIOy8sW.ROCarP9bkCIJ.VJSzA59uHOlja9varTp.', NULL, '2024-03-10 15:56:55', '2024-03-10 15:55:45', '2024-03-10 15:56:55'),
 (5, 'test', 'test@gmail.com', '12345678', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$3nOiE7OR4YznoP/ILrwgIuk7DREgxBP08oW28u3JgL0P2GTjwzlJK', NULL, '2024-03-10 16:03:01', '2024-03-10 16:02:25', '2024-03-10 16:03:01'),
-(6, '1234567', '1@y', '123456789', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$dncOFKoOWGbvg.uRsU4aZuu2cNynes8GtxTgN6FMr5tQm2OxbAj32', NULL, NULL, '2024-05-15 11:01:56', '2024-05-15 11:06:48');
+(6, '1234567', '1@y', '123456789', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$dncOFKoOWGbvg.uRsU4aZuu2cNynes8GtxTgN6FMr5tQm2OxbAj32', NULL, '2024-05-23 06:53:18', '2024-05-15 11:01:56', '2024-05-23 06:53:18'),
+(7, 'admin2', '1@y', '1234567', NULL, NULL, '973', 'BH', 1, 1, NULL, '$2y$10$fEI6LQfV9VvmHoflWXUbqO4BjfgIHdL5PBsPgfQ7dYfvy6znguEjy', NULL, NULL, '2024-05-23 06:54:18', '2024-05-23 06:54:18');
 
 -- --------------------------------------------------------
 
@@ -161,8 +156,7 @@ CREATE TABLE `branches` (
 --
 
 INSERT INTO `branches` (`id`, `country_id`, `region_id`, `title_ar`, `title_en`, `phone`, `whatsapp`, `email`, `address_ar`, `address_en`, `delivery`, `pickup`, `dinein`, `status`, `lat`, `long`, `created_at`, `updated_at`) VALUES
-(2, NULL, NULL, 'branch1', 'branch1', NULL, NULL, NULL, 'Riyadh, Malaz Dist., P.O.Box: 82373', 'Riyadh, Malaz Dist., P.O.Box: 82373', 1, 1, 1, 1, NULL, NULL, '2024-04-24 14:11:18', '2024-04-24 14:11:18'),
-(5, NULL, NULL, 'الدمام', 'Damam', NULL, NULL, NULL, 'س ع ص', 'S D F', 1, 1, 1, 1, NULL, NULL, '2024-05-15 09:35:05', '2024-05-15 09:35:05');
+(2, NULL, NULL, 'branch1', 'branch1', NULL, NULL, NULL, 'Riyadh, Malaz Dist., P.O.Box: 82373', 'Riyadh, Malaz Dist., P.O.Box: 82373', 1, 1, 1, 1, NULL, NULL, '2024-04-24 14:11:18', '2024-04-24 14:11:18');
 
 -- --------------------------------------------------------
 
@@ -235,23 +229,17 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `client_id`, `product_id`, `color_id`, `size_id`, `quantity`, `created_at`, `updated_at`, `category`) VALUES
-(1, 293938, 3, 1, 1, 2, '2024-03-22 23:39:35', '2024-03-23 00:18:14', NULL),
-(2, 293938, 3, 1, 2, 2, '2024-03-23 00:18:33', '2024-03-23 00:18:53', NULL),
-(3, 18, 3, 1, 1, 1, '2024-03-23 00:19:52', '2024-03-23 00:39:27', NULL),
-(4, 18, 3, 2, 1, 1, '2024-03-23 00:21:26', '2024-03-23 00:21:40', NULL),
-(9, 633941, 3, 1, 1, 1, '2024-03-24 15:12:32', '2024-03-24 15:12:32', NULL),
-(10, 633941, 3, 2, 2, 2, '2024-03-24 15:29:01', '2024-03-24 15:29:01', NULL),
-(11, 633941, 3, 1, 2, 3, '2024-03-24 15:48:38', '2024-03-24 15:48:38', NULL),
-(12, 633941, 3, 2, 1, 2, '2024-03-24 15:49:49', '2024-03-24 15:49:49', NULL),
-(13, 158242, 3, 1, 2, 2, '2024-03-25 11:20:30', '2024-03-25 11:22:45', '22'),
-(14, 158242, 3, 1, 1, 2, '2024-03-25 11:23:27', '2024-03-25 11:23:27', '22'),
-(15, 628377, 3, 1, 2, 2, '2024-04-02 09:37:07', '2024-04-02 09:37:07', '22'),
-(16, 628377, 3, 2, 1, 1, '2024-04-02 09:37:18', '2024-04-02 09:37:18', '22'),
-(22, 22, 3, 1, 1, 1, '2024-04-17 17:10:41', '2024-04-17 17:10:41', 'newCollection'),
-(23, 22, 3, 1, 2, 2, '2024-04-18 11:20:56', '2024-04-18 11:20:56', '22'),
 (46, 548899, 13, 1, 1, 2, '2024-05-07 16:51:05', '2024-05-07 16:51:05', 'newCollection'),
 (67, 531238, 13, 1, 1, 1, '2024-05-15 10:18:49', '2024-05-15 10:18:49', '27'),
-(70, 303062, 13, 1, 1, 1, '2024-05-15 13:54:04', '2024-05-15 13:54:04', '27');
+(70, 303062, 13, 1, 1, 1, '2024-05-15 13:54:04', '2024-05-15 13:54:04', '27'),
+(95, 45, 13, 1, 1, 1, '2024-05-20 07:05:55', '2024-05-20 07:05:55', '27'),
+(110, 633276, 13, 1, 1, 1, '2024-05-21 12:08:33', '2024-05-21 12:08:33', '27'),
+(116, 673509, 13, 1, 1, 1, '2024-05-21 13:56:58', '2024-05-21 13:56:58', '28'),
+(117, 650228, 14, 2, 1, 1, '2024-05-21 14:30:39', '2024-05-21 14:30:39', 'bestSelling'),
+(120, 653416, 13, 1, 1, 1, '2024-05-22 06:29:07', '2024-05-22 06:29:07', '27'),
+(121, 653416, 13, 2, 1, 1, '2024-05-22 06:29:14', '2024-05-22 06:29:14', '27'),
+(122, 358339, 13, 1, 1, 1, '2024-05-22 06:32:30', '2024-05-22 06:32:30', '27'),
+(124, 58, 13, 1, 1, 2, '2024-05-23 07:02:17', '2024-05-23 07:02:22', 'bestSelling');
 
 -- --------------------------------------------------------
 
@@ -279,9 +267,7 @@ INSERT INTO `categories` (`id`, `title_ar`, `title_en`, `status`, `created_at`, 
 (9, 'عبايات كلاسيكية', 'Classic Abayas', 1, '2024-03-14 11:29:49', '2024-03-14 11:29:49', 1, NULL, '/uploads/Categories/1710412189_1929.png'),
 (13, 'عبايات مطرزة', 'Embroidered Abayas', 1, '2024-03-14 11:39:40', '2024-03-14 11:39:40', 0, 9, '/uploads/Categories/1710412780_7099.png'),
 (27, 'عبايات مطرزة واسعة', 'Wide Embroidered Abayas', 1, '2024-05-07 15:11:51', '2024-05-07 15:11:51', 0, 13, '/uploads/Categories/1715094711_8355.png'),
-(28, 'عبايات مطرزة ضيقة', 'Narrow Embroidered Abayas', 1, '2024-05-07 15:13:26', '2024-05-07 15:13:26', 0, 13, '/uploads/Categories/1715094806_9944.png'),
-(29, 'تست كاتيجوري', 'test category', 1, '2024-05-15 09:16:34', '2024-05-15 09:17:47', 1, NULL, '/uploads/Categories/1715764594_7415.jpg'),
-(30, 'تست كاتيجوري', 'test category', 1, '2024-05-15 12:12:08', '2024-05-15 13:36:48', 0, 29, '/uploads/Categories/1715780208_6508.png');
+(28, 'عبايات مطرزة ضيقة', 'Narrow Embroidered Abayas', 1, '2024-05-07 15:13:26', '2024-05-07 15:13:26', 0, 13, '/uploads/Categories/1715094806_9944.png');
 
 -- --------------------------------------------------------
 
@@ -294,6 +280,7 @@ CREATE TABLE `clients` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
+  `newphone` varchar(255) DEFAULT NULL,
   `points` int(11) NOT NULL DEFAULT 0,
   `image` varchar(255) NOT NULL DEFAULT 'logo.png',
   `phone_code` varchar(255) NOT NULL DEFAULT '+973',
@@ -316,21 +303,12 @@ CREATE TABLE `clients` (
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`id`, `name`, `email`, `phone`, `points`, `image`, `phone_code`, `code`, `country_code`, `status`, `email_verified_at`, `password`, `remember_token`, `deleted_at`, `created_at`, `updated_at`, `last_name`, `first_name`, `password_confirmation`, `otp`) VALUES
-(28, NULL, 'nouran.ssp@gmail.com', '1017944211', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$7/Qe1LqE4BHbtyxIZzhLruyegcq.yvnPdSTmXVvA9Tzs2N0nmw/oi', NULL, NULL, '2024-04-23 11:13:14', '2024-05-13 13:15:35', 'ebrahim', 'nouran2', '$2y$10$MQePloz/6.TL8kOBb9XXj.hEmLARm2BBiAPyzoklDldjEoIjp1Qgq', '770692'),
-(30, NULL, 'halah@gmail.com', '1027696654', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$8XcaobuTaXP728P4SfRLC.gsTcFSiCF6dVjhAeKKOMCT7U2QoBzxy', NULL, NULL, '2024-04-24 10:53:45', '2024-04-27 06:22:08', 'Abdelhamed', 'halah', '$2y$10$PGgfqfs0BkC5oPFBt180EuievsdHytT4Wqhw71IimsK9rRcWS3muq', '482938'),
-(31, NULL, NULL, '123456789', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$aro2nv0U7sb5OPlyVg2ece./E/eTmv7wm9XcdTZ6GTTtAkQJ4E6EC', NULL, NULL, '2024-05-07 04:36:34', '2024-05-18 07:51:32', 'Bailey', 'Keefe', NULL, '268268'),
-(32, NULL, 'mostafazarea69@gmail.com', '33467117', 0, 'logo.png', '973', 'BH', 'BH', 1, NULL, '$2y$10$3b7MZcmOD7S2tidjnfz7puoClYj.oWRcC5ietBa5nfZzShEvlP7zm', NULL, NULL, '2024-05-09 08:28:07', '2024-05-09 08:31:46', 'Mahmoud', 'Mostafa', '$2y$10$9TzsA1IfdR.6Do1t9rtIEeRfSwc0DlL3aBQ907Q0NHqel6zXuZBUG', '941465'),
-(33, NULL, 'Mohammedg.abdelaal1@gmail.com', '1148888408', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$I/xifPW4HqW1gfNahKgtmujs5SehvV2ridbuB/VhYmsrdhIxG6gI6', NULL, NULL, '2024-05-14 07:46:51', '2024-05-16 08:49:15', 'gaber', 'mohamed', '$2y$10$vEOrXRVmccIAAxFgdhJRmuCIl4k7is9QAy50zlBvaF.zCsegfEdL6', '306467'),
-(34, NULL, NULL, '234567890', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$iXzwVE40DN9qSqq5R4gzc.b5V6ZGX6NB08lJFb4SnFsCOImMto0Bi', NULL, NULL, '2024-05-14 08:06:39', '2024-05-14 08:06:39', 'gaber', 'mohamed', NULL, NULL),
-(35, NULL, NULL, '334455667', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$mGf1ajZsB35HZxUme5Kl0uqRC31J41o6HHrxyhgOJWrG04DKHHpQy', NULL, NULL, '2024-05-14 08:11:32', '2024-05-14 08:11:32', 'gaber', 'mohamed', NULL, NULL),
-(36, NULL, '1@y', '114455667', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$SB9R8PfJiomuqCBcoOALM.WTz8Ew25Mo17Ztlzu4p/8Lk9mPdRw7G', NULL, NULL, '2024-05-14 08:18:43', '2024-05-15 12:00:06', 'gaber', 'mohamed', '$2y$10$jt.kcc/mccQX0veENrbvCeY1Q.CWSQHdp45cmVOxoNPTjCV6DdV9W', NULL),
-(37, NULL, 'mohamed@yahoo', '224455667', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$8j7Us.LHlTcgVnRwcpCN2efQRgpyRhjHOHrTVPyEYi8ArQyk/TH16', NULL, '2024-05-15 11:45:12', '2024-05-14 08:22:21', '2024-05-15 11:45:12', 'gaber', 'mohamed', '$2y$10$vMpj6evXhuPfSreh0SEZwuI1J.0x.WkPS7qF9NKOk5yqbDhwFV9nC', NULL),
-(38, NULL, NULL, '12345678', 0, 'logo.png', '973', 'BH', 'BH', 1, NULL, '$2y$10$o7lJW21ij0hMzEK5mmW3euAK9f8GPNycN4qsrF3UA9OhQSnkxwTM6', NULL, NULL, '2024-05-14 08:29:37', '2024-05-14 08:29:37', 'alo', 'mm', NULL, NULL),
-(39, NULL, NULL, '445566778', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$lyqkcWzEDN8dvlLbfykukusg.4s9EsHqOagLDhv0LOcwcq6iTWVru', NULL, NULL, '2024-05-16 07:49:24', '2024-05-16 07:49:24', 'gaber', 'mohamed', NULL, NULL),
-(40, NULL, NULL, '123456345', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$UVucInnxf.LsSxW9Oouo8.kfonJYrOq5qwbkGCOLQWsOb3zEm3J7i', NULL, NULL, '2024-05-16 07:57:58', '2024-05-16 07:57:58', 'Weeks', 'Kenyon', NULL, NULL),
-(41, NULL, NULL, '015530489', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$Dv8nxwtCWtNTGOHPZrAKpO/4K7rY0KqYHzMw4uW1et1XbK3cbuMPm', NULL, NULL, '2024-05-18 00:50:09', '2024-05-18 00:50:09', 'Ahmed', 'Dina', NULL, NULL),
-(42, NULL, NULL, '1553048031', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$UQuZNBIs.DcI8EkdP0uOBOwgq.1HYKL0cyp2R8SfYvT7QDiWEbpvu', NULL, NULL, '2024-05-19 04:40:02', '2024-05-19 04:44:42', 'Ahmed', 'Dina', '$2y$10$XaotrA.Gq.vxE0TuksWOCufO45sS2CHPSeVDo7OdUT/yHmyPeG7QG', '713881');
+INSERT INTO `clients` (`id`, `name`, `email`, `phone`, `newphone`, `points`, `image`, `phone_code`, `code`, `country_code`, `status`, `email_verified_at`, `password`, `remember_token`, `deleted_at`, `created_at`, `updated_at`, `last_name`, `first_name`, `password_confirmation`, `otp`) VALUES
+(54, NULL, 'nouran.ssp@gmail.com', '1017944211', '201017944211', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$oA3KkYV8EVKxfdHqrY34VOTbd76UvVLlgTUeE5LgU7O3U6RqDQh2y', NULL, NULL, '2024-05-21 10:22:47', '2024-05-25 19:19:40', 'El Mohamady', 'Nouran', '$2y$10$SPTBq7OoBrHKa/bG5aOxhehmJjlBa1Rfm9SMiqnSIaQouFeeyHyd6', '714934'),
+(55, NULL, 'mohammedg.abdelaal1@gmail.com', '1148888408', '201148888408', 0, 'logo.png', '20', 'BH', 'EG', 1, NULL, '$2y$10$a3qFov6rrYYUX9ux6.7Pau7mHDCsfTxOpwzFkADaC5G8p7KZlYnIy', NULL, NULL, '2024-05-21 10:39:55', '2024-05-23 10:44:29', 'gaber', 'mohamed', '$2y$10$XPB6rFSgO6SXq1dU4RiCTepR00ewfPNviWZr4n/EGW7CFjd5t3cry', NULL),
+(56, NULL, 'cc@y', '123456789', '966123456789', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, NULL, NULL, NULL, '2024-05-22 06:30:00', '2024-05-22 06:30:00', 'cc', 'cc', NULL, NULL),
+(58, NULL, 'mypyty@mailinator.com', '987654321', '966987654321', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$RDGQPdSRMVTP/3ILsLlOaOSHolW.MlyRVb0xWuMIqTiq.77HUmBwG', NULL, NULL, '2024-05-23 06:55:25', '2024-05-23 06:55:25', 'Perkins', 'Whilemina', NULL, NULL),
+(60, NULL, 'ccc@y', '112233445', '966112233445', 0, 'logo.png', '966', 'BH', 'SA', 1, NULL, '$2y$10$TZnR/yPg1zsSJFSDkJYmcuXg1LROh6Ojm6X599MnFD3zKOr9QfvoW', NULL, NULL, '2024-05-23 06:56:57', '2024-05-23 09:37:01', 'cccc', 'cccc', '$2y$10$.EOOMEq96RX08CMDE6qin.cPFV8fHU/N2bxcW9hjRSpqsNZS6nH0u', NULL);
 
 -- --------------------------------------------------------
 
@@ -462,9 +440,10 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `code`, `type`, `discount`, `percent_off`, `from`, `to`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'code 1', 'discount', 10.00, NULL, '2024-04-02', '2024-05-30', 1, '2024-04-02 11:34:58', '2024-05-08 11:57:03'),
-(2, 'code 2', 'percent_off', NULL, 10, '2024-04-02', '2024-05-24', 1, '2024-04-02 11:35:20', '2024-05-08 11:56:49'),
+(2, 'code 2', 'percent_off', NULL, 10, '2024-04-02', '2024-05-27', 1, '2024-04-02 11:35:20', '2024-05-25 18:17:39'),
 (3, 'CODE 3', 'percent_off', NULL, 25, '2024-02-01', '2024-12-05', 1, '2024-05-15 10:28:11', '2024-05-15 10:28:11'),
-(5, 'CODE 3', 'discount', 20.00, NULL, '2024-02-02', '2024-05-15', 1, '2024-05-15 10:35:13', '2024-05-15 10:35:13');
+(7, 'Code 4', 'percent_off', NULL, 15, '2024-04-12', '2024-05-20', 1, '2024-05-21 11:04:20', '2024-05-21 11:04:20'),
+(8, 'Code 5', 'percent_off', NULL, 25, '2024-05-12', '2024-05-31', 1, '2024-05-21 11:04:44', '2024-05-21 11:04:44');
 
 -- --------------------------------------------------------
 
@@ -575,8 +554,7 @@ INSERT INTO `f_a_q_s` (`id`, `question_ar`, `question_en`, `answer_ar`, `answer_
 (2, 'Can I cancel or change my order?', 'Can I cancel or change my order?', 'can i cancel', 'can i cancel', 1, '2024-04-24 12:05:30', '2024-04-24 12:58:00', 'orders'),
 (3, 'How can I place an online order?', 'How can I place an online order?', 'How can I place an online order', 'How can I place an online order', 1, '2024-04-24 12:31:12', '2024-04-24 12:58:31', 'payments'),
 (4, 'Can I cancel or change my order?', 'Can I cancel or change my order?', 'Can I cancel or change my order', 'Can I cancel or change my order', 1, '2024-04-24 12:31:32', '2024-04-24 12:58:46', 'payments'),
-(5, 'How do I know my size', 'How do I know my size', 'How do I know my size', 'How do I know my size', 1, '2024-04-24 12:32:07', '2024-04-24 12:59:10', 'returns'),
-(6, 'كيف اوصل لخدمة العملاء', 'How to reach customer support', 'باتباع الخطوات الاتية :\r\n1 - افتح الموقع', 'By doing these steps :\r\n1- open website', 1, '2024-05-15 09:41:17', '2024-05-15 09:41:17', 'returns');
+(5, 'How do I know my size', 'How do I know my size', 'How do I know my size', 'How do I know my size', 1, '2024-04-24 12:32:07', '2024-04-24 12:59:10', 'returns');
 
 -- --------------------------------------------------------
 
@@ -728,7 +706,7 @@ CREATE TABLE `orders` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `notes` varchar(255) NOT NULL,
+  `notes` varchar(255) DEFAULT NULL,
   `coupon_id` bigint(20) UNSIGNED DEFAULT NULL,
   `total_after_coupon` decimal(9,3) DEFAULT 0.000,
   `sub_total_after_coupon` decimal(9,3) DEFAULT 0.000
@@ -739,23 +717,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `delivery_id`, `client_id`, `address_id`, `payment_id`, `sub_total`, `discount`, `discount_percentage`, `vat`, `vat_percentage`, `coupon`, `coupon_text`, `coupon_percentage`, `charge_cost`, `net_total`, `status`, `follow`, `use_points`, `points_number`, `gained_points`, `client_points`, `mobile_type`, `deleted_at`, `created_at`, `updated_at`, `notes`, `coupon_id`, `total_after_coupon`, `sub_total_after_coupon`) VALUES
-(32, 1, 28, 42, 1, 180.000, 0.000, 0, 27.000, 15, 10.000, NULL, 0, 25.000, 222.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-08 12:25:38', '2024-05-08 12:25:38', '', 1, 0.000, 170.000),
-(33, 1, 32, 43, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-09 08:28:07', '2024-05-09 08:28:07', '', NULL, 0.000, 0.000),
-(34, 1, 28, 44, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-09 12:35:04', '2024-05-09 12:35:04', '', NULL, 0.000, 0.000),
-(35, 1, 33, 45, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 1, 2, 0, 0, 0, 0, NULL, NULL, '2024-05-14 10:59:54', '2024-05-15 13:11:17', '', NULL, 0.000, 0.000),
-(36, 1, 33, 45, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 0.000, 0.000, 2, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-14 11:00:50', '2024-05-15 12:07:22', '', NULL, 0.000, 0.000),
-(37, 1, 33, 48, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 1, 3, 0, 0, 0, 0, NULL, NULL, '2024-05-14 11:14:03', '2024-05-15 13:10:41', '', NULL, 0.000, 0.000),
-(44, 1, 33, 45, 1, 648.000, 0.000, 0, 97.200, 15, 10.000, NULL, 0, 25.000, 760.200, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:38:44', '2024-05-16 08:38:44', '', 1, 0.000, 638.000),
-(45, 1, 33, 45, 1, 648.000, 0.000, 0, 97.200, 15, 10.000, NULL, 0, 25.000, 760.200, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:38:59', '2024-05-16 08:38:59', '', 1, 0.000, 638.000),
-(46, 1, 33, 45, 1, 648.000, 0.000, 0, 97.200, 15, 64.800, NULL, 0, 25.000, 705.400, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:42:18', '2024-05-16 08:42:18', '', 2, 0.000, 583.200),
-(47, 1, 33, 45, 1, 648.000, 0.000, 0, 97.200, 15, 64.800, NULL, 0, 25.000, 705.400, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:42:30', '2024-05-16 08:42:30', '', 2, 0.000, 583.200),
-(48, 1, 33, 45, 1, 648.000, 0.000, 0, 97.200, 15, 64.800, NULL, 0, 25.000, 705.400, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:42:36', '2024-05-16 08:42:36', '', 2, 0.000, 583.200),
-(49, 1, 33, 45, 1, 486.000, 0.000, 0, 72.900, 15, 0.000, NULL, 0, 25.000, 583.900, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:46:44', '2024-05-16 08:46:44', '', NULL, 0.000, 0.000),
-(50, 1, 33, 45, 1, 486.000, 0.000, 0, 72.900, 15, 0.000, NULL, 0, 25.000, 583.900, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:46:54', '2024-05-16 08:46:54', '', NULL, 0.000, 0.000),
-(51, 1, 33, 45, 1, 486.000, 0.000, 0, 72.900, 15, 0.000, NULL, 0, 25.000, 583.900, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:47:01', '2024-05-16 08:47:01', '', NULL, 0.000, 0.000),
-(53, 1, 33, 45, 1, 162.000, 0.000, 0, 24.300, 15, 0.000, NULL, 0, 25.000, 211.300, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 08:50:38', '2024-05-16 08:50:38', '', NULL, 0.000, 0.000),
-(54, 1, 33, 45, 1, 1836.000, 0.000, 0, 275.400, 15, 183.600, NULL, 0, 25.000, 1952.800, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '', 2, 0.000, 1652.400),
-(55, 1, 33, 45, 1, 162.000, 0.000, 0, 24.300, 15, 40.500, NULL, 0, 25.000, 170.800, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-16 13:33:53', '2024-05-16 13:33:53', '', 3, 0.000, 121.500);
+(102, 1, 54, 64, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-23 11:19:27', '2024-05-23 11:19:27', 'ggggg', NULL, 0.000, 0.000),
+(103, 1, 55, 61, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-23 11:24:24', '2024-05-23 11:24:24', NULL, NULL, 0.000, 0.000),
+(104, 1, 55, 61, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-23 11:24:52', '2024-05-23 11:24:52', NULL, NULL, 0.000, 0.000),
+(105, 1, 55, 61, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-23 11:25:08', '2024-05-23 11:25:08', '12341231', NULL, 0.000, 0.000),
+(106, 1, 54, 64, 1, 180.000, 0.000, 0, 27.000, 15, 0.000, NULL, 0, 25.000, 232.000, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-23 11:54:08', '2024-05-23 11:54:08', NULL, NULL, 0.000, 0.000),
+(107, 2, 54, NULL, 1, 180.000, 0.000, 0, 24.300, 15, 18.000, NULL, 0, 0.000, 186.300, 0, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-25 18:18:38', '2024-05-25 18:18:38', NULL, 2, 0.000, 162.000),
+(108, 1, 54, 65, 1, 100.000, 0.000, 0, 15.000, 15, 0.000, NULL, 0, 25.000, 140.000, 2, 0, 0, 0, 0, 0, NULL, NULL, '2024-05-25 18:25:18', '2024-05-25 19:49:51', NULL, NULL, 0.000, 0.000);
 
 -- --------------------------------------------------------
 
@@ -782,21 +750,13 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `order_id`, `product_id`, `color_id`, `size_id`, `price`, `quantity`, `total`, `created_at`, `updated_at`, `category`) VALUES
-(37, 32, 14, 2, 2, 180.000, 1, 180.000, '2024-05-08 12:25:38', '2024-05-08 12:25:38', 'bestSelling'),
-(38, 33, 14, 2, 2, 180.000, 1, 180.000, '2024-05-09 08:28:07', '2024-05-09 08:28:07', 'bestSelling'),
-(39, 34, 13, 1, 1, 180.000, 1, 180.000, '2024-05-09 12:35:04', '2024-05-09 12:35:04', '27'),
-(40, 35, 13, 1, 1, 180.000, 1, 180.000, '2024-05-14 10:59:54', '2024-05-14 10:59:54', 'newCollection'),
-(41, 37, 13, 1, 1, 180.000, 1, 180.000, '2024-05-14 11:14:03', '2024-05-14 11:14:03', '27'),
-(50, 44, 13, 2, 1, 162.000, 4, 648.000, '2024-05-16 08:38:44', '2024-05-16 08:38:44', 'newCollection'),
-(51, 46, 13, 1, 1, 162.000, 4, 648.000, '2024-05-16 08:42:18', '2024-05-16 08:42:18', '27'),
-(52, 49, 13, 1, 1, 162.000, 3, 486.000, '2024-05-16 08:46:44', '2024-05-16 08:46:44', 'newCollection'),
-(54, 53, 13, 1, 1, 162.000, 1, 162.000, '2024-05-16 08:50:38', '2024-05-16 08:50:38', 'newCollection'),
-(55, 54, 13, 1, 2, 162.000, 3, 486.000, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '27'),
-(56, 54, 13, 1, 1, 162.000, 3, 486.000, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '27'),
-(57, 54, 13, 2, 2, 162.000, 2, 324.000, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '27'),
-(58, 54, 14, 1, 3, 162.000, 2, 324.000, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '28'),
-(59, 54, 14, 2, 3, 162.000, 1, 162.000, '2024-05-16 13:14:12', '2024-05-16 13:14:12', '28'),
-(60, 55, 13, 1, 1, 162.000, 1, 162.000, '2024-05-16 13:33:53', '2024-05-16 13:33:53', 'newCollection');
+(106, 102, 13, 1, 1, 180.000, 1, 180.000, '2024-05-23 11:19:27', '2024-05-23 11:19:27', '27'),
+(107, 103, 13, 2, 1, 180.000, 1, 180.000, '2024-05-23 11:24:24', '2024-05-23 11:24:24', '27'),
+(108, 104, 13, 1, 1, 180.000, 1, 180.000, '2024-05-23 11:24:52', '2024-05-23 11:24:52', '28'),
+(109, 105, 13, 2, 1, 180.000, 1, 180.000, '2024-05-23 11:25:08', '2024-05-23 11:25:08', '27'),
+(110, 106, 13, 2, 1, 180.000, 1, 180.000, '2024-05-23 11:54:08', '2024-05-23 11:54:08', '27'),
+(111, 107, 13, 1, 1, 180.000, 1, 180.000, '2024-05-25 18:18:38', '2024-05-25 18:18:38', '27'),
+(112, 108, 14, 1, 1, 180.000, 1, 180.000, '2024-05-25 18:25:18', '2024-05-25 18:25:18', '28');
 
 -- --------------------------------------------------------
 
@@ -832,7 +792,7 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `title_ar`, `title_en`, `status`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'كاش', 'cash', 1, '/uploads/PaymentMethods/1697900757_2398.webp', '2022-10-06 06:56:58', '2024-03-10 13:20:18'),
-(2, 'ديبت كارد', 'Detbit Card', 1, '/uploads/PaymentMethods/1697900766_7660.webp', '2022-10-06 06:57:16', '2023-10-21 12:06:06'),
+(2, 'بطاقة الصراف الآلي', 'Detbit Card', 1, '/uploads/PaymentMethods/1697900766_7660.webp', '2022-10-06 06:57:16', '2024-05-21 11:45:20'),
 (3, 'بطاقة الإئتمان', 'Credit Card', 1, '/uploads/PaymentMethods/1697900773_7679.webp', '2022-10-06 06:57:31', '2023-10-21 12:06:13'),
 (4, 'بنفت باي', 'Benefit Pay', 1, '/uploads/PaymentMethods/1697900780_3097.webp', '2022-10-06 06:57:46', '2023-10-21 12:06:20'),
 (5, 'ابل باي', 'Apple Pay', 1, '/uploads/PaymentMethods/1697900788_3799.webp', '2022-12-20 13:55:39', '2023-10-21 12:06:48');
@@ -894,12 +854,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title_ar`, `title_en`, `desc_ar`, `desc_en`, `code`, `arrangement`, `VAT`, `most_selling`, `popular`, `status`, `price`, `quantity`, `discount`, `from`, `to`, `deleted_at`, `created_at`, `updated_at`, `in_stock`, `new_collection`, `price_after_discount`, `material_ar`, `material_en`) VALUES
-(3, '‎رمضــان ٢٠٢٤ ✨', '✨ ramadhan bisht', '<p style=\"text-align: right;\">قماش السلعة: 100% كتان<br>الحزام متضمن: لا<br>العناية بالملابس: تنظيف جاف<br>ملاحظة المصمم: يرجى ذكر طول عبايتك المعتادة</p>', '<p style=\"text-align: left;\">Item fabric : 100% Linen<br>Belt Included : No<br>Garment Care : Dry Clean<br>Designer note : Please mention your usual abaya lenth</p>', '26317', 3, 'exclusive', 0, 0, 1, 100.000, 0, 50.000, '2024-02-01', '2024-03-27', '2024-05-07 15:26:34', '2024-02-25 10:04:54', '2024-05-07 15:26:34', 1, 0, 50.000, '92% Polyester, 8% Elastane', '92% Polyester, 8% Elastane'),
-(13, 'ساتان فاخر متوهج', 'Premium satin flared', NULL, NULL, 'DAV0033D', 13, 'exclusive', 0, 0, 1, 180.000, 0, 10.000, '2024-05-01', '2024-05-17', NULL, '2024-05-07 15:22:25', '2024-05-15 13:49:24', 1, 1, 162.000, '92% بوليستر، 8% إيلاستان', '92% Polyester, 8% Elastane'),
-(14, 'غابة عميقة متميزة مفتوحة', 'Premium deep forest open', NULL, NULL, 'DAV0033N', 14, 'exclusive', 1, 1, 1, 180.000, 0, NULL, NULL, NULL, NULL, '2024-05-07 15:34:58', '2024-05-07 15:34:58', 1, 1, 0.000, '92% بوليستر، 8% إيلاستان', '92% Polyester, 8% Elastane'),
-(15, 'test', 'test', NULL, NULL, 'E5', 15, 'exclusive', 1, 0, 1, 50.000, 0, NULL, NULL, NULL, '2024-05-15 09:09:28', '2024-05-08 08:03:34', '2024-05-15 09:09:28', 1, 1, 0.000, 'test', 'test'),
-(16, 'تست', 'test', NULL, NULL, 'test', 16, 'exclusive', 1, 0, 1, 50.000, 0, NULL, NULL, NULL, NULL, '2024-05-15 09:10:28', '2024-05-15 09:33:58', 1, 1, 0.000, 'تست', 'Test'),
-(17, 'عباية مطرزة واسعة', 'Wide embroidered abaya', NULL, NULL, 'ABDC1234', 17, 'exclusive', 1, 0, 1, 200.000, 0, NULL, NULL, NULL, NULL, '2024-05-15 09:21:50', '2024-05-15 09:22:20', 1, 1, 0.000, NULL, NULL);
+(13, 'ساتان فاخر متوهج', 'Premium satin flared', NULL, NULL, 'DAV0033D', 13, 'exclusive', 1, 0, 1, 180.000, 0, 10.000, '2024-05-01', '2024-05-17', NULL, '2024-05-07 15:22:25', '2024-05-15 13:49:24', 1, 1, 162.000, '92% بوليستر، 8% إيلاستان', '92% Polyester, 8% Elastane'),
+(14, 'غابة عميقة متميزة مفتوحة', 'Premium deep forest open', NULL, NULL, 'DAV0033N', 14, 'exclusive', 0, 0, 1, 100.000, 0, NULL, NULL, NULL, NULL, '2024-05-07 15:34:58', '2024-05-22 13:34:14', 1, 1, 0.000, '92% بوليستر، 8% إيلاستان', '92% Polyester, 8% Elastane');
 
 -- --------------------------------------------------------
 
@@ -922,12 +878,7 @@ CREATE TABLE `product_categories` (
 INSERT INTO `product_categories` (`id`, `category_id`, `product_id`, `created_at`, `updated_at`) VALUES
 (58, 27, 13, NULL, NULL),
 (59, 28, 13, NULL, NULL),
-(60, 28, 14, NULL, NULL),
-(61, 28, 15, NULL, NULL),
-(62, 27, 16, NULL, NULL),
-(63, 28, 16, NULL, NULL),
-(64, 27, 17, NULL, NULL),
-(65, 28, 17, NULL, NULL);
+(60, 28, 14, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -948,25 +899,10 @@ CREATE TABLE `product_color` (
 --
 
 INSERT INTO `product_color` (`id`, `product_id`, `color_id`, `created_at`, `updated_at`) VALUES
-(62, 3, 1, NULL, NULL),
-(63, 3, 2, NULL, NULL),
 (82, 13, 1, NULL, NULL),
 (83, 13, 2, NULL, NULL),
 (85, 14, 1, NULL, NULL),
-(86, 14, 2, NULL, NULL),
-(87, 15, 14, NULL, NULL),
-(88, 16, 5, NULL, NULL),
-(89, 16, 6, NULL, NULL),
-(90, 16, 7, NULL, NULL),
-(91, 16, 8, NULL, NULL),
-(92, 16, 9, NULL, NULL),
-(93, 16, 10, NULL, NULL),
-(94, 16, 11, NULL, NULL),
-(95, 16, 12, NULL, NULL),
-(96, 17, 9, NULL, NULL),
-(97, 17, 10, NULL, NULL),
-(98, 17, 12, NULL, NULL),
-(99, 16, 20, NULL, NULL);
+(86, 14, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1003,13 +939,6 @@ CREATE TABLE `product_galleries` (
 --
 
 INSERT INTO `product_galleries` (`id`, `image`, `status`, `product_id`, `color_id`, `created_at`, `updated_at`) VALUES
-(10, '/uploads/productGallery/1711014683_9630.webp', 1, 3, 1, '2024-03-21 10:51:23', '2024-03-21 10:51:23'),
-(11, '/uploads/productGallery/1711014683_2904.webp', 1, 3, 1, '2024-03-21 10:51:23', '2024-03-21 10:51:23'),
-(12, '/uploads/productGallery/1711014683_3717.webp', 1, 3, 1, '2024-03-21 10:51:23', '2024-03-21 10:51:23'),
-(13, '/uploads/productGallery/1711016372_3845.webp', 1, 3, 1, '2024-03-21 11:19:32', '2024-03-21 11:19:32'),
-(16, '/uploads/productGallery/1711017285_5780.jpg', 1, 3, 2, '2024-03-21 11:34:45', '2024-03-21 11:34:45'),
-(17, '/uploads/productGallery/1711017285_7772.jpg', 1, 3, 2, '2024-03-21 11:34:45', '2024-03-21 11:34:45'),
-(18, '/uploads/productGallery/1711017285_6851.jpg', 1, 3, 2, '2024-03-21 11:34:45', '2024-03-21 11:34:45'),
 (19, '/uploads/productGallery/1715095684_1775.jpg', 1, 13, 1, '2024-05-07 15:28:04', '2024-05-07 15:28:04'),
 (20, '/uploads/productGallery/1715095684_3976.jpg', 1, 13, 1, '2024-05-07 15:28:04', '2024-05-07 15:28:04'),
 (21, '/uploads/productGallery/1715095684_2283.jpg', 1, 13, 1, '2024-05-07 15:28:04', '2024-05-07 15:28:04'),
@@ -1043,8 +972,6 @@ CREATE TABLE `product_headers` (
 --
 
 INSERT INTO `product_headers` (`id`, `header`, `status`, `product_id`, `color_id`, `created_at`, `updated_at`) VALUES
-(1, '/uploads/productGallery/1711016395_6660.webp', 1, 3, 1, '2024-03-21 10:51:23', '2024-03-21 11:19:55'),
-(3, '/uploads/productGallery/1711017347_6855.jpg', 1, 3, 2, '2024-03-21 11:34:45', '2024-03-21 11:35:47'),
 (4, '/uploads/productGallery/1715095684_9725.jpg', 1, 13, 1, '2024-05-07 15:28:04', '2024-05-07 15:28:04'),
 (5, '/uploads/productGallery/1715095837_6580.jpg', 1, 13, 2, '2024-05-07 15:30:19', '2024-05-07 15:30:37'),
 (6, '/uploads/productGallery/1715096507_2546.jpg', 1, 14, 1, '2024-05-07 15:41:47', '2024-05-07 15:41:47'),
@@ -1072,15 +999,8 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `image`, `status`, `main`, `color_id`, `product_id`, `created_at`, `updated_at`) VALUES
-(3, '/uploads/products/1708855494_3939.jpg', 1, 0, NULL, 3, '2024-02-25 10:04:54', '2024-03-17 09:46:03'),
-(11, '/uploads/products/1710665100_8080.png', 1, 1, NULL, 3, '2024-03-17 09:45:00', '2024-03-17 09:46:03'),
-(12, '/uploads/products/1710665100_7402.png', 1, 0, NULL, 3, '2024-03-17 09:45:00', '2024-03-17 09:46:03'),
-(13, '/uploads/products/1710665100_5951.png', 1, 0, NULL, 3, '2024-03-17 09:45:00', '2024-03-17 09:46:03'),
 (20, '/uploads/products/1715095345_8596.png', 1, 1, NULL, 13, '2024-05-07 15:22:25', '2024-05-07 15:22:25'),
-(21, '/uploads/products/1715096098_5170.png', 1, 1, NULL, 14, '2024-05-07 15:34:58', '2024-05-07 15:34:58'),
-(22, '/uploads/products/1715155414_6171.png', 1, 1, NULL, 15, '2024-05-08 08:03:34', '2024-05-08 08:03:34'),
-(23, '/uploads/products/1715764385_5665.jpg', 1, 1, NULL, 16, '2024-05-15 09:13:05', '2024-05-15 09:13:05'),
-(24, '/uploads/products/1715764940_2687.jpg', 1, 1, NULL, 17, '2024-05-15 09:22:20', '2024-05-15 09:22:20');
+(21, '/uploads/products/1715096098_5170.png', 1, 1, NULL, 14, '2024-05-07 15:34:58', '2024-05-07 15:34:58');
 
 -- --------------------------------------------------------
 
@@ -1103,16 +1023,13 @@ CREATE TABLE `product_reviews` (
 --
 
 INSERT INTO `product_reviews` (`id`, `client_id`, `product_id`, `rate`, `comment`, `created_at`, `updated_at`) VALUES
-(5, 28, 3, '3', 'nnnnnn', '2024-04-29 12:49:35', '2024-04-29 12:49:35'),
-(9, 33, 13, '1', 'cool', '2024-05-14 13:29:43', '2024-05-14 13:29:43'),
-(10, 33, 13, '', NULL, '2024-05-14 13:29:55', '2024-05-14 13:29:55'),
-(11, 33, 13, '5', NULL, '2024-05-14 13:35:16', '2024-05-14 13:35:16'),
-(12, 33, 13, '5', NULL, '2024-05-14 13:35:32', '2024-05-14 13:35:32'),
-(13, 33, 13, '1', NULL, '2024-05-14 13:35:39', '2024-05-14 13:35:39'),
-(14, 33, 13, '5', NULL, '2024-05-14 13:36:06', '2024-05-14 13:36:06'),
-(15, 33, 13, '5', NULL, '2024-05-14 13:36:15', '2024-05-14 13:36:15'),
-(16, 33, 13, '5', NULL, '2024-05-14 13:39:32', '2024-05-14 13:39:32'),
-(17, 33, 13, '5', NULL, '2024-05-14 13:40:12', '2024-05-14 13:40:12');
+(22, 54, 13, '1', 'test', '2024-05-23 06:52:58', '2024-05-23 06:52:58'),
+(23, 58, 13, '2', 'test 2', '2024-05-23 06:56:49', '2024-05-23 06:56:49'),
+(24, 58, 13, '3', 'text 5', '2024-05-23 08:19:34', '2024-05-23 08:19:34'),
+(25, 54, 13, '3', 'test', '2024-05-23 09:37:18', '2024-05-23 09:37:18'),
+(26, 54, 13, '3', 'test 2', '2024-05-23 09:37:29', '2024-05-23 09:37:29'),
+(27, 54, 13, '3', 'test6666', '2024-05-23 09:37:43', '2024-05-23 09:37:43'),
+(28, 55, 13, '4', 'etst', '2024-05-23 10:53:03', '2024-05-23 10:53:03');
 
 -- --------------------------------------------------------
 
@@ -1133,17 +1050,11 @@ CREATE TABLE `product_size` (
 --
 
 INSERT INTO `product_size` (`id`, `product_id`, `size_id`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, NULL, NULL),
-(2, 3, 2, NULL, NULL),
 (29, 13, 1, NULL, NULL),
 (30, 13, 2, NULL, NULL),
 (31, 14, 1, NULL, NULL),
 (32, 14, 2, NULL, NULL),
 (33, 14, 3, NULL, NULL),
-(34, 15, 1, NULL, NULL),
-(35, 15, 2, NULL, NULL),
-(36, 16, 1, NULL, NULL),
-(37, 17, 1, NULL, NULL),
 (38, 13, 7, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1406,22 +1317,22 @@ INSERT INTO `settings` (`id`, `key`, `value`, `type`, `status`, `created_at`, `u
 (4, 'return_refund_policy_ar', '<h2>RETURN AND REFUND POLICY</h2>\r\n<h3>ORDERS CANCELLECTION</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>EXCHANGE</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>REFUND</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>', 'return_refund_policy', 1, '2022-10-09 11:52:15', '2024-04-25 13:01:53'),
 (5, 'return_refund_policy_en', '<h2 style=\"text-align: left;\">RETURN AND REFUND POLICY</h2>\r\n<h3 style=\"text-align: left;\">ORDERS CANCELLECTION</h3>\r\n<p style=\"text-align: left;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3 style=\"text-align: left;\">EXCHANGE</h3>\r\n<p style=\"text-align: left;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3 style=\"text-align: left;\">REFUND</h3>\r\n<p style=\"text-align: left;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>', 'return_refund_policy', 1, '2022-10-09 11:52:15', '2024-04-25 13:01:53'),
 (6, 'return_refund_policy_image', '/uploads/settings/1710077647_9115.png', 'return_refund_policy', 0, '2022-10-09 11:52:15', '2024-03-10 14:34:07'),
-(7, 'title_ar', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(8, 'title_en', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
+(7, 'title_ar', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(8, 'title_en', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
 (9, 'terms_ar', '<div class=\"policy-section container section-top\">\r\n<h2>TERMS OF SERVICE</h2>\r\n<h3>OVERVIEW</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et.</p>\r\n<h3>SECTION 1 - ONLINE STORE TERMS</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 2 - GENERAL CONDITIONS</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 3 - ACCURACY, COMPLETENESS, AND TIMELINESS OF INFORMATION</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 5 - PRODUCTS OR SERVICES</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n</div>\r\n<footer id=\"footer\" class=\"container mt-5\"></footer>', 'terms', 1, '2022-10-09 11:52:15', '2024-04-25 13:40:10'),
 (10, 'terms_en', '<div class=\"policy-section container section-top\">\r\n<h2>TERMS OF SERVICE</h2>\r\n<h3>OVERVIEW</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et.</p>\r\n<h3>SECTION 1 - ONLINE STORE TERMS</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 2 - GENERAL CONDITIONS</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 3 - ACCURACY, COMPLETENESS, AND TIMELINESS OF INFORMATION</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 4 - MODIFICATIONS TO THE SERVICE AND PRICES</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n<h3>SECTION 5 - PRODUCTS OR SERVICES</h3>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut. Erat imperdiet sed euismod nisi porta. Turpis egestas pretium aenean pharetra magna ac placerat. Odio ut enim blandit volutpat maecenas volutpat blandit. Feugiat in fermentum posuere urna nec. Lorem sed risus ultricies tristique. Sed id semper risus in hendrerit gravida rutrum quisque. Sit amet nulla facilisi morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Mattis enim ut tellus elementum sagittis vitae et. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Nec sagittis aliquam malesuada bibendum. Lacus sed turpis tincidunt id aliquet risus feugiat in. Aenean sed adipiscing diam donec adipiscing tristique. Proin sed libero enim sed faucibus. Dui sapien eget mi proin sed libero. At quis risus sed vulputate. Elit eget gravida cum sociis natoque penatibus et. Laoreet non curabitur gravida arcu ac tortor dignissim convallis aenean. Sit amet luctus venenatis lectus magna fringilla urna. Elit ut aliquam purus sit.</p>\r\n</div>\r\n<footer id=\"footer\" class=\"container mt-5\"></footer>', 'terms', 1, '2022-10-09 11:52:15', '2024-04-25 13:40:10'),
 (11, 'terms_image', '/uploads/settings/1710078184_4266.png', 'terms', 0, '2022-10-09 11:52:15', '2024-03-10 14:43:04'),
 (12, 'logo', '/uploads/settings/1710767657_6001.png', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-03-18 14:14:17'),
-(13, 'email', 'OR-couture@gmail.com', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(14, 'phone', '96601235745', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(15, 'whatsapp', '96601235745', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(16, 'desc', 'Or is Bring You to Update New Fantastic Footwear with Us, Enjoy the Whole Experience.', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(17, 'keywords', 'Or is Bring You to Update New Fantastic Footwear with Us, Enjoy the Whole Experience.', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(18, 'author', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(20, 'VAT', '15', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(24, 'min_order', '1', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(34, 'main_color', '#000000', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
-(37, 'DefaultLang', 'ar', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-15 10:20:27'),
+(13, 'email', 'OR-couture@gmail.com', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(14, 'phone', '96601235745', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(15, 'whatsapp', '96601235745', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(16, 'desc', 'Or is Bring You to Update New Fantastic Footwear with Us, Enjoy the Whole Experience.', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(17, 'keywords', 'Or is Bring You to Update New Fantastic Footwear with Us, Enjoy the Whole Experience.', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(18, 'author', 'OR Couture', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(20, 'VAT', '15', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(24, 'min_order', '1', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(34, 'main_color', '#000000', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
+(37, 'DefaultLang', 'ar', 'publicSettings', 1, '2022-10-09 11:52:15', '2024-05-21 07:31:26'),
 (46, 'snapchat_services', NULL, 'advertising', 0, NULL, '2023-04-10 10:05:48'),
 (47, 'twitter_services', NULL, 'advertising', 0, NULL, '2023-04-10 10:05:48'),
 (48, 'facebbok_services', NULL, 'advertising', 0, NULL, '2023-04-10 10:05:48'),
@@ -1487,8 +1398,8 @@ CREATE TABLE `sizes` (
 INSERT INTO `sizes` (`id`, `title_ar`, `title_en`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'S', 'S', 1, '2024-02-25 09:52:30', '2024-02-25 09:52:30'),
 (2, 'M', 'M', 1, '2024-02-25 09:52:35', '2024-02-25 09:52:35'),
-(3, 'L', 'L', 1, '2024-02-25 09:52:42', '2024-02-25 09:52:42'),
-(7, 'كبير جدا', 'XL', 1, '2024-05-15 09:30:54', '2024-05-15 09:30:54');
+(3, 'L', 'L', 0, '2024-02-25 09:52:42', '2024-02-25 09:52:42'),
+(7, 'كبير جدا', 'XL', 0, '2024-05-15 09:30:54', '2024-05-15 09:30:54');
 
 -- --------------------------------------------------------
 
@@ -1516,11 +1427,8 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `screen`, `image`, `vedio`, `type`, `title_ar`, `title_en`, `desc_ar`, `desc_en`, `status`, `created_at`, `updated_at`) VALUES
-(0, 'lg', '/uploads/Images/1715770307_3583.png', '/uploads/Images/1710677273_9614.mp4', 'image', 'Elevate Your Style with our Exquisite Abayas', 'Elevate Your Style with our Exquisite Abayas', 'Embrace Modest Fashion with Confidence', 'Embrace Modest Fashion with Confidence', 1, '2024-03-17 12:30:18', '2024-05-15 10:51:47'),
-(0, 'lg', '/uploads/Images/1715770307_3583.png', '/uploads/Images/1710677273_9614.mp4', 'vedio', 'Elevate Your Style with our Exquisite Abayas', 'Elevate Your Style with our Exquisite Abayas', 'Embrace Modest Fashion with Confidence', 'Embrace Modest Fashion with Confidence', 1, '2024-03-17 13:07:53', '2024-05-15 10:51:47'),
-(0, 'lg', '/uploads/Images/1715770307_3583.png', NULL, 'image', 'تست سلايدر', 'Test slider', 'اهلا و مرحبا', 'hallo it\'s me', 1, '2024-05-15 10:43:44', '2024-05-15 10:51:47'),
-(0, 'lg', '/uploads/Images/1715770307_3583.png', NULL, 'image', 'تست كاتيجوري', 'test category', '0', '0', 1, '2024-05-15 10:49:07', '2024-05-15 10:51:47'),
-(0, 'lg', '/uploads/Images/1715770307_3583.png', NULL, 'image', 'عباية مطرزة واسعة', 'test category', '0', '0', 1, '2024-05-15 10:49:58', '2024-05-15 10:51:47');
+(1, 'lg', '/uploads/Images/1715770307_3583.png', '/uploads/Images/1710677273_9614.mp4', 'image', 'ارتقِ بأسلوبك مع عباياتنا الرائعة', 'Elevate Your Style with our Exquisite Abayas', 'اعتنق الموضة المحتشمة بثقة', 'Embrace Modest Fashion with Confidence', 1, '2024-03-17 12:30:18', '2024-05-23 09:57:08'),
+(2, 'lg', '/uploads/Images/1715770307_3583.png', '/uploads/Images/1710677273_9614.mp4', 'vedio', 'ارتقِ بأسلوبك مع عباياتنا الرائعة', 'Elevate Your Style with our Exquisite Abayas', 'اعتنق الموضة المحتشمة بثقة', 'Embrace Modest Fashion with Confidence', 1, '2024-03-17 13:07:53', '2024-05-23 09:58:06');
 
 -- --------------------------------------------------------
 
@@ -1589,7 +1497,7 @@ INSERT INTO `vacancies` (`id`, `title_ar`, `title_en`, `desc_ar`, `desc_en`, `fr
 (1, 'vacancy1', 'vacancy1', NULL, NULL, '2024-04-25', '2024-04-30', '2024-04-25 14:49:27', '2024-04-25 14:49:27', 1),
 (2, 'vacancy2', 'vacancy2', NULL, NULL, '2024-04-23', '2024-04-30', '2024-04-30 13:57:13', '2024-04-25 14:57:13', 1),
 (3, 'Vacancy3', 'Vacancy3', NULL, NULL, '2024-05-09', '2024-07-19', '2024-05-09 10:31:42', '2024-05-09 10:31:42', 1),
-(4, 'Vacancy 4', 'Vacancy 4', NULL, NULL, '2024-05-09', '2024-07-31', '2024-05-09 10:33:22', '2024-05-09 10:33:22', 1);
+(4, 'Vacancy 4', 'Vacancy 4', NULL, NULL, '2024-05-09', '2024-07-31', '2024-05-09 10:33:22', '2024-05-23 09:50:08', 1);
 
 -- --------------------------------------------------------
 
@@ -1614,11 +1522,9 @@ CREATE TABLE `whish_lists` (
 --
 
 INSERT INTO `whish_lists` (`id`, `client_id`, `product_id`, `color_id`, `size_id`, `quantity`, `created_at`, `updated_at`, `category`) VALUES
-(1, 18, 3, 1, 1, 1, '2024-03-23 00:44:38', '2024-03-23 00:56:39', NULL),
-(15, 158242, 3, NULL, NULL, 1, '2024-03-25 12:20:08', '2024-03-25 12:20:08', '22'),
-(17, 602599, 3, NULL, NULL, 1, '2024-04-07 12:36:36', '2024-04-07 12:36:36', '22'),
-(30, 230322, 3, NULL, NULL, 1, '2024-04-28 10:01:29', '2024-04-28 10:01:29', '22'),
-(66, 28, 3, NULL, NULL, 1, '2024-04-29 11:35:27', '2024-04-29 11:35:27', 'bestSelling');
+(116, 223291, 13, NULL, NULL, 1, '2024-05-21 05:08:59', '2024-05-21 05:08:59', 'newCollection'),
+(118, 769941, 13, NULL, NULL, 1, '2024-05-23 09:36:05', '2024-05-23 09:36:05', 'bestSelling'),
+(122, 54, 14, NULL, NULL, 1, '2024-05-25 17:39:15', '2024-05-25 17:39:15', '28');
 
 --
 -- Indexes for dumped tables
@@ -1688,7 +1594,8 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `phone` (`phone`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `newphone` (`newphone`);
 
 --
 -- Indexes for table `colors`
@@ -1712,7 +1619,8 @@ ALTER TABLE `countries`
 -- Indexes for table `coupons`
 --
 ALTER TABLE `coupons`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
 
 --
 -- Indexes for table `coupon_products`
@@ -1911,6 +1819,12 @@ ALTER TABLE `sizes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `social_media_icons`
 --
 ALTER TABLE `social_media_icons`
@@ -1947,13 +1861,13 @@ ALTER TABLE `whish_lists`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `banners`
@@ -1983,19 +1897,19 @@ ALTER TABLE `careers`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `colors`
@@ -2019,7 +1933,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `coupon_products`
@@ -2079,13 +1993,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -2103,19 +2017,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `product_color`
 --
 ALTER TABLE `product_color`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `product_favourites`
@@ -2139,19 +2053,19 @@ ALTER TABLE `product_headers`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`
 --
 ALTER TABLE `product_reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `product_size`
 --
 ALTER TABLE `product_size`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `regions`
@@ -2178,6 +2092,12 @@ ALTER TABLE `sizes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `social_media_icons`
 --
 ALTER TABLE `social_media_icons`
@@ -2199,7 +2119,7 @@ ALTER TABLE `vacancies`
 -- AUTO_INCREMENT for table `whish_lists`
 --
 ALTER TABLE `whish_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- Constraints for dumped tables

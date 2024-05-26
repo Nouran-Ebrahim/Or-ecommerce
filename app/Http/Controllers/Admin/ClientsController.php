@@ -16,35 +16,37 @@ class ClientsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $Clients = Client::latest();
+            $Clients = Client::with('orders')->latest();
 
             return Datatables::of($Clients)
                 ->addColumn('action', function ($Model) {
                     $data = '';
-                    $data .= '<a style="color: #000;" href="'.route('admin.clients.show', $Model).'"><i class="fas fa-eye"></i></a>';
+                    $data .= '<a style="color: #000;" href="' . route('admin.clients.show', $Model) . '"><i class="fas fa-eye"></i></a>';
 
-                    $data .= '<a style="color: #000;" href="'.route('admin.clients.edit', $Model).'"><i class="fa-solid fa-pen-to-square"></i></a>';
+                    $data .= '<a style="color: #000;" href="' . route('admin.clients.edit', $Model) . '"><i class="fa-solid fa-pen-to-square"></i></a>';
+                    if (count($Model->orders) == 0) {
+                        $data .= '<form class="formDelete" method="POST" action="' . route('admin.clients.destroy', $Model) . '">
+                                ' . csrf_field() . '
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-eraser"></i></button>
+                            </form>';
+                    }
 
-                    $data .= '<form class="formDelete" method="POST" action="'.route('admin.clients.destroy', $Model).'">
-                                    '.csrf_field().'
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-eraser"></i></button>
-                                </form>';
 
                     return $data;
                 })
                 ->addColumn('name', function ($Client) {
-                    return $Client->first_name.' '.$Client->last_name;
+                    return $Client->first_name . ' ' . $Client->last_name;
                 })
                 ->addColumn('img', function ($Client) {
-                    return '<img src="'.Country::where('country_code', $Client->country_code)->first()->image.'" style="height: 30px;" >';
+                    return '<img src="' . Country::where('country_code', $Client->country_code)->first()->image . '" style="height: 30px;" >';
                 })
                 ->addColumn('addresses', function ($Client) {
-                    return '<a href="'.route('admin.addresses.index', $Client).'"><button class="btn btn-primary">'.__('trans.addresses').'</button></a>';
+                    return '<a href="' . route('admin.addresses.index', $Client) . '"><button class="btn btn-primary">' . __('trans.addresses') . '</button></a>';
                 })
                 ->addIndexColumn()
                 ->addColumn('checkbox', function ($Model) {
-                    return '<input type="checkbox" class="DTcheckbox" value="'.$Model->id.'">';
+                    return '<input type="checkbox" class="DTcheckbox" value="' . $Model->id . '">';
                 })
                 ->escapeColumns('action', 'checkbox', 'status', 'addresses')
                 ->make(true);
@@ -87,7 +89,7 @@ class ClientsController extends Controller
     {
         // dd($request->all());
         $Client = Client::where('id', $id)->firstorfail();
-        $Client->update($request->only(['first_name','last_name', 'email', 'phone', 'country_code', 'phone_code']));
+        $Client->update($request->only(['first_name', 'last_name', 'email', 'phone', 'country_code', 'phone_code']));
         if ($request->hasFile('image')) {
             $Client->image = Upload::UploadFile($request->image, 'Clients');
         }
@@ -97,10 +99,11 @@ class ClientsController extends Controller
         if ($request->password) {
             $Client->password_confirmation = bcrypt($request->password_confirmation);
         }
+        $Client->newphone=$request->newphone;
         $Client->save();
         alert()->success(__('trans.updatedSuccessfully'));
 
-        return redirect()->back();
+        return redirect()->route('admin.clients.index');
     }
 
     public function destroy($id)

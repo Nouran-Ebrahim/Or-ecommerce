@@ -12,7 +12,7 @@ class UpdateAdminRequest extends BaseRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string'],
-            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
+            'password' => ['nullable', 'min:6', 'confirmed'],
             'status' => ['sometimes', 'required', 'boolean'],
             'country_code' => ['required', 'string'],
             'phone_code' => ['required', 'string'],

@@ -3,13 +3,15 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCouponRequest extends BaseRequest
 {
+   
     public function rules()
     {
         return [
-            'code' => ['required', 'string'],
+            'code' => ['required', 'string','unique:coupons,code,'.request('id')],
             'type' => ['required', 'string'],
 
             'discount' => ['nullable', 'numeric'],

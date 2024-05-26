@@ -85,11 +85,7 @@
                         </div>
                     @endif
 
-                    <div class="order-summary">
-                        <p class="name">@lang('trans.VAT')({{ $Order->vat_percentage }}%)</p>
-                        <p class="amount">{{ Country()->currancy_code_en }}
-                            {{ number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '') }}</p>
-                    </div>
+                    
 
                     @if ($Order->coupon > 0)
                         <div class="order-summary">
@@ -99,6 +95,11 @@
                             </p>
                         </div>
                     @endif
+                    <div class="order-summary">
+                        <p class="name">@lang('trans.VAT')({{ $Order->vat_percentage }}%)</p>
+                        <p class="amount">{{ Country()->currancy_code_en }}
+                            {{ number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '') }}</p>
+                    </div>
                     @if ($Order->delivery_id == 1)
                         <div class="order-summary">
                             <p class="name">@lang('trans.SHIPPING')</p>

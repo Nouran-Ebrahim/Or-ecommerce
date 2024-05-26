@@ -20,12 +20,12 @@ class AdminsController extends Controller
             return Datatables::of($Admins)
                 ->addColumn('action', function ($Model) {
                     $data = '';
-                    $data .= '<a style="color: #000;" href="'.route('admin.admins.show', $Model).'"><i class="fas fa-eye"></i></a>';
+                    $data .= '<a style="color: #000;" href="' . route('admin.admins.show', $Model) . '"><i class="fas fa-eye"></i></a>';
 
-                    $data .= '<a style="color: #000;" href="'.route('admin.admins.edit', $Model).'"><i class="fa-solid fa-pen-to-square"></i></a>';
+                    $data .= '<a style="color: #000;" href="' . route('admin.admins.edit', $Model) . '"><i class="fa-solid fa-pen-to-square"></i></a>';
 
-                    $data .= '<form class="formDelete" method="POST" action="'.route('admin.admins.destroy', $Model).'">
-                                    '.csrf_field().'
+                    $data .= '<form class="formDelete" method="POST" action="' . route('admin.admins.destroy', $Model) . '">
+                                    ' . csrf_field() . '
                                     <input name="_method" type="hidden" value="DELETE">
                                     <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip" title="Delete"><i class="fa-solid fa-eraser"></i></button>
                                 </form>';
@@ -34,7 +34,7 @@ class AdminsController extends Controller
                 })
                 ->addIndexColumn()
                 ->addColumn('checkbox', function ($Model) {
-                    return '<input type="checkbox" class="DTcheckbox" value="'.$Model->id.'">';
+                    return '<input type="checkbox" class="DTcheckbox" value="' . $Model->id . '">';
                 })
                 ->escapeColumns('action', 'checkbox', 'status')
                 ->make(true);
@@ -78,15 +78,18 @@ class AdminsController extends Controller
 
     public function update(UpdateAdminRequest $request, $id)
     {
+        // dd($request->all());
         $Admin = Admin::where('id', $id)->firstorfail();
         $Admin->update($request->only(['name', 'email', 'phone', 'country_code', 'phone_code']));
         if ($request->hasFile('image')) {
             $Admin->image = Upload::UploadFile($request->image, 'Admins');
         }
         if ($request->password) {
+            // dd(1);
             $Admin->password = bcrypt($request->password);
+            $Admin->save();
+
         }
-        $Admin->save();
         alert()->success(__('trans.updatedSuccessfully'));
 
         return redirect()->back();

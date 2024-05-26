@@ -125,7 +125,7 @@
                                 <h4>@lang('trans.Edit PROFILE')</h4>
                                 <p>@lang('trans.Edit your profile details')</p>
                             </div>
-                            <a href="{{ route('client.profile') }}" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
+                            <a href="javascript:;" id="viewAccount" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab"
@@ -213,13 +213,14 @@
                                                 <p>@lang('trans.Coupon')</p>
                                                 <p id="coupon"></p>
                                             </div>
-                                            <div class="price-row">
-                                                <p>@lang('trans.Vat')</p>
-                                                <p id="vat"></p>
-                                            </div>
+
                                             <div class="price-row couponInfo" style="display: none">
                                                 <p>@lang('trans.Sub Total after coupon')</p>
                                                 <p id="sub_total_after_coupon"></p>
+                                            </div>
+                                            <div class="price-row">
+                                                <p>@lang('trans.Vat')</p>
+                                                <p id="vat"></p>
                                             </div>
                                             <div class="price-row shippingCountainer">
                                                 <p>@lang('trans.SHIPPING')</p>
@@ -265,7 +266,8 @@
                                     <h4>@lang('trans.ADD ADDRESS')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a href="{{ route('client.address.create') }}" class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
+                                <a href="{{ route('client.address.create') }}"
+                                    class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
                             </div>
                         </section>
                         @if ($defaultAddress)
@@ -350,7 +352,8 @@
                                 @enderror
                                 <div class="actions">
                                     <button type="submit" class="btn save-changes">@lang('trans.save')</button>
-                                    <a href="{{ route('client.profile') }}" class="btn cancel-changes">@lang('trans.cancel')</a>
+                                    <a href="javascript:;" id="cancelEditProfile"
+                                        class="btn cancel-changes">@lang('trans.cancel')</a>
                                 </div>
                             </form>
                         </section>
@@ -365,8 +368,29 @@
 @endsection
 @push('js')
     <script src="https://unpkg.com/intl-tel-input@17.0.3/build/js/intlTelInput.js"></script>
-
     <script>
+        $('#cancelEditProfile').on('click', function() {
+            window.location.href = "{{ route('client.profile') }}";
+            localStorage.setItem('cancelEditProfile', true);
+        })
+    </script>
+    <script>
+        $('#viewAccount').on('click', function(e) {
+            var activeTab = $('.nav-link.profile.active');
+            var activePane = $('.tab-pane.active.show');
+
+            // Remove 'active' class from the currently active tab
+            activeTab.removeClass('active');
+
+            // Remove 'active show' classes from the currently active tab pane
+            activePane.removeClass('active show');
+
+            // Add 'active' class to the edit tab
+            $('#v-pills-edit-tab').addClass('active');
+
+            // Add 'active show' classes to the edit tab pane
+            $('#v-pills-edit').addClass('active show');
+        })
         var iti = window.intlTelInput(document.querySelector("#phone"), {
             separateDialCode: true,
             formatOnDisplay: false,
@@ -375,13 +399,18 @@
             preferredCountries: ['sa']
         });
         window.iti = iti;
+        var initialCountryCode = "{{ old('country_code', 'SA') }}";
+        var initialPhoneCode = "{{ old('phone_code', 966) }}";
+        iti.setCountry(initialCountryCode.toLowerCase());
 
-        iti.setCountry("{{ old('country_code', isset($Client->country_code) ? $Client->country_code : 'SA') }}");
+        // iti.setCountry("{{ old('country_code', isset($Client->country_code) ? $Client->country_code : 'SA') }}");
         document.querySelector("#phone").addEventListener("countrychange", function() {
             document.getElementById("phone").value = '';
             document.getElementById("country_code").value = iti.getSelectedCountryData().iso2.toUpperCase();
             document.getElementById("phone_code").value = iti.getSelectedCountryData().dialCode;
         })
+        document.getElementById("country_code").value = initialCountryCode;
+        document.getElementById("phone_code").value = initialPhoneCode;
     </script>
     <script>
         $(".view--btn").on("click", function() {

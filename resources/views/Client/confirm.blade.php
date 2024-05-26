@@ -8,6 +8,69 @@
             margin-top: 3rem;
         }
     </style>
+    @if (lang() == 'ar')
+        <style>
+            .iti--allow-dropdown .iti__flag-container,
+            .iti--separate-dial-code .iti__flag-container {
+                /* right: 25px !important; */
+                left: auto !important;
+            }
+
+            .iti__country-list {
+                margin: 0px 0px 0 0px !important;
+            }
+
+            .iti__country-list {
+                position: absolute !important;
+                z-index: 2 !important;
+                list-style: none !important;
+                text-align: right !important;
+                padding: 0 !important;
+                margin: 0 0 0 -1px !important;
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !important;
+                background-color: white !important;
+                border: 1px solid #CCC !important;
+                white-space: nowrap !important;
+                max-height: 200px !important;
+                overflow-y: scroll !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+
+            #phone {
+                padding-left: 90px !important;
+                padding-right: 90px !important;
+            }
+        </style>
+    @else
+        <style>
+            .iti--allow-dropdown .iti__flag-container,
+            .iti--separate-dial-code .iti__flag-container {
+                /* left: 25px !important; */
+                right: auto !important;
+            }
+
+            .iti__country-list {
+                position: absolute !important;
+                z-index: 2 !important;
+                list-style: none !important;
+                text-align: left !important;
+                padding: 0 !important;
+                margin: 0 0 0 -1px !important;
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !important;
+                background-color: white !important;
+                border: 1px solid #CCC !important;
+                white-space: nowrap !important;
+                max-height: 200px !important;
+                overflow-y: scroll !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+
+            #phone {
+                padding-left: 90px !important;
+                padding-right: 90px !important;
+            }
+        </style>
+    @endif
 @endpush
 @section('content')
     <section class="checkout-section container section-top">
@@ -16,7 +79,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     @if (auth('client')->check())
-                        <h4 class="shipping">SHIPPING METHOD</h4>
+                        <h4 class="shipping">@lang('trans.SHIPPING METHOD')</h4>
                         @foreach (Deliveries() as $key => $Delivery)
                             <div class="payment-method">
                                 <div class="payment-input">
@@ -28,7 +91,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        <h4 class="shipping address">Your Address</h4>
+                        <h4 class="shipping address">@lang('trans.Your Address')</h4>
                         @if ($addresses->count() > 0)
                             @foreach ($addresses as $address)
                                 <div class="payment-method address">
@@ -42,6 +105,9 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @error('address_id')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         @else
                             <div class="address">
                                 <select id="country" name="country_id" class="form-select  shipping-options">
@@ -63,14 +129,21 @@
                                 </select>
                             </div>
                             <div class="input-name address">
-                                <input type="text" name="flat" placeholder="@lang('trans.flat')" />
-                                @error('flat')
-                                    <p class="alert alert-danger">{{ $message }}</p>
-                                @enderror
-                                <input type="text" name="zone" placeholder="@lang('trans.district')" />
-                                @error('zone')
-                                    <p class="alert alert-danger">{{ $message }}</p>
-                                @enderror
+                                <div style="width: 48%">
+                                    <input value="{{ old('flat') }}" style="   width: 100%;" type="text"
+                                        name="flat" placeholder="@lang('trans.flat')" />
+                                    @error('flat')
+                                        <p class="alert alert-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div style="width: 48%">
+                                    <input value="{{ old('zone') }}" style="  width: 100%;" type="text" name="zone"
+                                        placeholder="@lang('trans.district')" />
+                                    @error('zone')
+                                        <p class="alert alert-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
                             </div>
                             <input name="road" class="contacts-input address" type="text"
                                 placeholder="@lang('trans.road')" />
@@ -82,42 +155,46 @@
                             @error('building_no')
                                 <p class="alert alert-danger">{{ $message }}</p>
                             @enderror
+                            <input class="contacts-input address" name="note" type="text"
+                                placeholder="@lang('trans.note')" />
+                            @error('note')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                             <input type="checkbox" class="form-check-input save-input address" value="1" name="default"
                                 id="save" />
-                            <label for="save" class="form-check-label save-label address">Save this
-                                information for next time</label>
+                            <label for="save" class="form-check-label save-label address">@lang('trans.Save this information for next time')</label>
                         @endif
                     @else
                         <div class="contact--container">
-                            <p>CONTACTS</p>
-                            <div>Have an account?<a role="button" href="{{ route('client.login') }}" class="btn">
-                                    <h3>Log in</h3>
+                            <p>@lang('trans.CONTACTS')</p>
+                            <div>@lang('trans.Have an account?')<a role="button" href="{{ route('client.login') }}" class="btn">
+                                    <h3>@lang('trans.login')</h3>
                                 </a></div>
                         </div>
                         <input class="contacts-input" type="text" value="{{ old('first_name') }}" name="first_name"
-                            placeholder="First Name" />
+                            placeholder="@lang('trans.first_name')" />
                         @error('first_name')
                             <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
                         @enderror
                         <input class="contacts-input" type="text" value="{{ old('last_name') }}" name="last_name"
-                            placeholder="Last Name" />
+                            placeholder="@lang('trans.last_name')" />
                         @error('last_name')
                             <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
                         @enderror
                         <input class="contacts-input" value="{{ old('email') }}" type="email" name="email"
-                            placeholder="Email" />
+                            placeholder="@lang('trans.email')" />
                         @error('email')
                             <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
                         @enderror
                         <input type="hidden" name="country_code" id="country_code"
                             value="{{ old('country_code', 'SA') }}">
                         <input type="hidden" name="phone_code" id="phone_code" value="{{ old('phone_code', 966) }}">
-                        <input class="contacts-input" type="tel" value="{{ old('phone') }}" name="phone"
-                            id="phone" placeholder="Phone" />
+                        <input class="contacts-input" type="text" value="{{ old('phone') }}" name="phone"
+                            id="phone" placeholder="@lang('trans.phone')" />
                         @error('phone')
                             <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
                         @enderror
-                        <h4 class="shipping">SHIPPING METHOD</h4>
+                        <h4 class="shipping">@lang('trans.SHIPPING METHOD')</h4>
                         @foreach (Deliveries() as $key => $Delivery)
                             <div class="payment-method">
                                 <div class="payment-input">
@@ -129,7 +206,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        <h4 class="shipping address">Your Address</h4>
+                        <h4 class="shipping address">@lang('trans.Your Address')</h4>
                         @if ($addresses->count() > 0)
                             @foreach ($addresses as $address)
                                 <div class="payment-method address">
@@ -143,6 +220,9 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @error('address_id')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                         @else
                             <div class="address">
                                 <select id="country" name="country_id" class="form-select  shipping-options">
@@ -183,17 +263,20 @@
                             @error('building_no')
                                 <p class="alert alert-danger">{{ $message }}</p>
                             @enderror
-
+                            <input class="contacts-input address" name="note" type="text"
+                                placeholder="@lang('trans.note')" />
+                            @error('note')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
                             <input type="checkbox" class="form-check-input save-input address" value="1"
                                 name="default" id="save" />
-                            <label for="save" class="form-check-label save-label address">Save this
-                                information for next time</label>
+                            <label for="save" class="form-check-label save-label address">@lang('trans.Save this information for next time')</label>
                         @endif
                     @endif
 
 
 
-                    <h4 class="shipping">PAYMENT</h4>
+                    <h4 class="shipping">@lang('trans.PAYMENT')</h4>
                     @foreach (Payments() as $Payment)
                         <div class="payment-method">
                             <div class="payment-input">
@@ -210,8 +293,8 @@
                     @error('payment_id')
                         <p class="alert alert-danger">{{ $message }}</p>
                     @enderror
-                    <h4 class="shipping">ORDER NOTES</h4>
-                    <input type="text" name="notes" class="order-notes" placeholder="Notes about your order" />
+                    <h4 class="shipping">@lang('trans.ORDER NOTES')</h4>
+                    <input type="text" name="notes" class="order-notes" placeholder="@lang('trans.Notes about your order')" />
                 </div>
                 <div class="col-lg-6">
                     <div class="order-container">
@@ -219,13 +302,15 @@
                         @foreach ($Carts as $cart)
                             <div class="order-item">
                                 <div class="order-img-box col-2">
-                                    
-                                    <img class="w-100 px-2" src="{{ asset($cart->Color?$cart->Color->Header[0]->header:$cart->Product->RandomImage()) }}" />
+
+                                    <img class="w-100 px-2"
+                                        src="{{ asset($cart->Color ? $cart->Color->Header[0]->header : $cart->Product->RandomImage()) }}" />
                                     <div class="amount">{{ $cart->quantity }}</div>
                                 </div>
                                 <div class="order-details">
                                     <p class="name">{{ $cart->Product->title() }}</p>
-                                    <p class="details">{{ $cart->Size->title() }}  {{ $cart->Color?'/'.$cart->Color->title():'' }}</p>
+                                    <p class="details">{{ $cart->Size->title() }}
+                                        {{ $cart->Color ? '/' . $cart->Color->title() : '' }}</p>
                                 </div>
                                 <p class="price">{{ Country()->currancy_code }} {{ $cart->Product->CalcPrice() }}</p>
                             </div>
@@ -255,16 +340,7 @@
 
                             </div>
                         </div>
-                        <div class="order-summary">
-                            <p class="name">VAT({{ setting('VAT') }}%)</p>
 
-                            <div class="">
-                                <input name="vat" id="vat" class="amount border-0 w-auto"
-                                    value="{{ $vat }}" readonly placeholder="{{ $vat }}"
-                                    style="direction: rtl;" />
-                                <span class="amount text-uppercase">{{ Country()->currancy_code }}</span>
-                            </div>
-                        </div>
                         <div class="order-summary couponInfo" style="display:none">
                             <p class="name">@lang('trans.Sub Total after coupon')</p>
 
@@ -274,6 +350,16 @@
                                     style="direction: rtl;" />
                                 <span class="amount text-uppercase">{{ Country()->currancy_code }}</span>
 
+                            </div>
+                        </div>
+                        <div class="order-summary">
+                            <p class="name">@lang('trans.vat')({{ setting('VAT') }}%)</p>
+
+                            <div class="">
+                                <input name="vat" id="vat" class="amount border-0 w-auto"
+                                    value="{{ $vat }}" readonly placeholder="{{ $vat }}"
+                                    style="direction: rtl;" />
+                                <span class="amount text-uppercase">{{ Country()->currancy_code }}</span>
                             </div>
                         </div>
                         <div class="order-summary" id="shipping">
@@ -296,10 +382,10 @@
                         </div>
                         <div class="Coupon-form">
                             <input value="" name="code" id="code" type="text"
-                                placeholder="Coupon code" />
-                            <button id="applay" class="btn">APPLY COUPON</button>
+                                placeholder="@lang('trans.Coupon code')" />
+                            <button id="applay" class="btn">@lang('trans.APPLY COUPON')</button>
                         </div>
-                        <button type="submit" class="btn place-order">PLACE ORDER</button>
+                        <button type="submit" class="btn place-order">@lang('trans.PLACE ORDER')</button>
 
                     </div>
 
@@ -509,6 +595,7 @@
                                 $('#total').val(data.total);
                                 $('#sub_total_after_coupon').val(data.subTotalAfterCoupon);
                                 $('#coupon').val(data.couponValue);
+                                $('#vat').val(data.vat);
                                 // $('#vat').val(data.vat);
                                 Swal.fire({
                                     icon: 'success',
@@ -522,8 +609,9 @@
                             } else {
                                 // $('#shipping input').val(data.charge_cost);
                                 $('#total').val(data.total);
-                                $('#sub_total_after_coupon').val(0);
+                                $('#sub_total_after_coupon').val(data.subTotalAfterCoupon);
                                 $('#coupon').val(data.couponValue);
+                                $('#vat').val(data.vat);
                                 // $('#vat').val(data.vat);
                                 Swal.fire({
                                     icon: 'error',
@@ -561,13 +649,18 @@
             preferredCountries: ['sa']
         });
         window.iti = iti;
-        iti.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
+        var initialCountryCode = "{{ old('country_code', 'SA') }}";
+        var initialPhoneCode = "{{ old('phone_code', 966) }}";
+        iti.setCountry(initialCountryCode.toLowerCase());
+        // iti.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
 
         document.querySelector("#phone").addEventListener("countrychange", function() {
             document.getElementById("phone").value = '';
             document.getElementById("country_code").value = iti.getSelectedCountryData().iso2.toUpperCase();
             document.getElementById("phone_code").value = iti.getSelectedCountryData().dialCode;
         })
+        document.getElementById("country_code").value = initialCountryCode;
+        document.getElementById("phone_code").value = initialPhoneCode;
     </script>
     {{-- <script>
         $(document).on("change", "#address_id", function() {

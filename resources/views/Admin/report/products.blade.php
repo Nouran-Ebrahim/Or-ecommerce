@@ -25,8 +25,8 @@
                                     <label for="sort">@lang('trans.sort')</label>
                                     <select name="sort" id="sort" class="form-control">
                                         <option value="">@lang('trans.Select')</option>
-                                        <option value="price_desc" data-key="price">@lang('trans.price_desc')</option>
-                                        <option value="price_asc" data-key="price">@lang('trans.price_asc')</option>
+                                        <option {{ request('sort')=="price_desc"?'selected':''}} value="price_desc" data-key="price">@lang('trans.price_desc')</option>
+                                        <option  {{ request('sort')=="price_asc"?'selected':''}} value="price_asc" data-key="price">@lang('trans.price_asc')</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 form-group" style="padding-top: 26px">

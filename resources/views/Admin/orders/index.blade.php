@@ -235,12 +235,7 @@
                                         <td colspan="3">{{ $Order->discount . ' ' . Country()->currancy_code }}</td>
                                     </tr>
                                 @endif
-                                <tr>
-                                    <th colspan="3">{{ __('trans.vat') }}</th>
-                                    <td colspan="3">
-                                        {{ number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '') . ' ' . Country()->currancy_code }}
-                                    </td>
-                                </tr>
+                               
                                 @if ($Order->coupon > 0)
                                     <tr>
                                         <th colspan="3">{{ __('trans.coupon') }}</th>
@@ -252,11 +247,25 @@
                                     </tr>
                                 @endif
                                 <tr>
+                                    <th colspan="3">{{ __('trans.vat') }}</th>
+                                    <td colspan="3">
+                                        {{ number_format(Country()->currancy_value * $Order->vat, Country()->decimals, '.', '') . ' ' . Country()->currancy_code }}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th colspan="3">{{ __('trans.net_total') }}</th>
                                     <td colspan="3">
                                         {{ number_format(Country()->currancy_value * $Order->net_total, Country()->decimals, '.', '') . ' ' . Country()->currancy_code }}
                                     </td>
                                 </tr>
+                                @if ($Order->notes != null)
+                                <tr>
+                                    <th colspan="3">{{ __('trans.notes') }}</th>
+                                    <td colspan="3">
+                                        {{$Order->notes}}
+                                    </td>
+                                </tr>
+                                @endif
                                 @if ($Order->address)
                                     <tr>
                                         <td colspan="6">

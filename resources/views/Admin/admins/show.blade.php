@@ -12,10 +12,9 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-6">
-                    <h2 class="box-title mt-5 bold">{{ $Admin['name'] }}</h2>
-                    <h2 class="mt-5 ">{{ $Admin['phone '] }}</h2>
-                    <h2 class="mt-5 ">{{ $Admin['email'] }}</h2>
-                    <h2 class="mt-5 ">{{ $Admin['phone'] }}</h2>
+                    <h2 class="box-title mt-5 bold">@lang('trans.name') : {{ $Admin['name'] }}</h2>
+                    <h2 class="mt-5 ">@lang('trans.phone') : {{ $Admin['phone '] }}</h2>
+                    <h2 class="mt-5 ">@lang('trans.email') : {{ $Admin['email'] }}</h2>
                 </div>
             </div>
         </div>

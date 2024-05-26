@@ -449,7 +449,7 @@
                                 <h4>@lang('trans.Edit PROFILE')</h4>
                                 <p>@lang('trans.Edit your profile details')</p>
                             </div>
-                            <a href="{{ route('client.profile') }}" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
+                            <a href="javascript:;" id="viewAccount" class="btn view-btn">@lang('trans.VIEW ACCOUNT')</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab"
@@ -537,13 +537,14 @@
                                                 <p>@lang('trans.Coupon')</p>
                                                 <p id="coupon"></p>
                                             </div>
-                                            <div class="price-row">
-                                                <p>@lang('trans.Vat')</p>
-                                                <p id="vat"></p>
-                                            </div>
+
                                             <div class="price-row couponInfo" style="display: none">
                                                 <p>@lang('trans.Sub Total after coupon')</p>
                                                 <p id="sub_total_after_coupon"></p>
+                                            </div>
+                                            <div class="price-row">
+                                                <p>@lang('trans.Vat')</p>
+                                                <p id="vat"></p>
                                             </div>
                                             <div class="price-row shippingCountainer">
                                                 <p>@lang('trans.SHIPPING')</p>
@@ -589,7 +590,8 @@
                                     <h4>@lang('trans.ADD ADDRESS')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a href="{{ route('client.address.create') }}" class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
+                                <a href="{{ route('client.address.create') }}"
+                                    class="btn add-address--btn">@lang('trans.ADD ADDRESS')</a>
                             </div>
                         </section>
                         @if ($defaultAddress)
@@ -652,14 +654,16 @@
                                     <h4>@lang('trans.EDIT PROFILE')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a type="button" href="{{ route('client.edit-profile') }}" class="btn">@lang('trans.EDIT PROFILE')</a>
+                                <a type="button" href="{{ route('client.edit-profile') }}"
+                                    class="btn">@lang('trans.EDIT PROFILE')</a>
                             </div>
                             <div class="edit-profile-item">
                                 <div class="details">
                                     <h4>@lang('trans.EDIT PASSWORDS')</h4>
                                     <p>@lang('trans.Set up a new address to make checkout simpler.')</p>
                                 </div>
-                                <a type="button" href="{{ route('client.change.password') }}" class="btn">@lang('trans.EDIT PASSWORDS')</a>
+                                <a type="button" href="{{ route('client.change.password') }}"
+                                    class="btn">@lang('trans.EDIT PASSWORDS')</a>
                             </div>
                         </section>
                     </div>
@@ -675,74 +679,90 @@
 
 @push('js')
     <script>
-      $(".view--btn").on("click", function() {
-                const summarySection = $(".summary--section");
-                const viewBtnImg = $(".view--btn-img", this);
+        $('#viewAccount').on('click', function(e) {
+            var activeTab = $('.nav-link.profile.active');
+            var activePane = $('.tab-pane.active.show');
 
-                summarySection.toggleClass("hide-content");
+            // Remove 'active' class from the currently active tab
+            activeTab.removeClass('active');
 
-                let currentSrc = viewBtnImg.attr("src");
-                let altSrc = viewBtnImg.data("alt-src");
+            // Remove 'active show' classes from the currently active tab pane
+            activePane.removeClass('active show');
 
-                viewBtnImg.attr("src", altSrc);
-                viewBtnImg.data("alt-src", currentSrc);
-                let orderId = $(this).data("order_id");
-                $.ajax({
-                    url: '{{ route('client.orderView') }}',
-                    type: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        orderId: orderId
-                    },
-                    success: function(data) {
-                        var lang = "{{ lang() }}"
-                        let order = data.order;
-                        console.log(order);
-                        if (order.address_id != null) {
-                            $("#country").text(order.address.country['title_' + lang]);
-                            $("#addressDetails").html(`${ order.address.building_no } ${ order.address.road } @lang('trans.Street'),
+            // Add 'active' class to the edit tab
+            $('#v-pills-edit-tab').addClass('active');
+
+            // Add 'active show' classes to the edit tab pane
+            $('#v-pills-edit').addClass('active show');
+        })
+        $(".view--btn").on("click", function() {
+            const summarySection = $(".summary--section");
+            const viewBtnImg = $(".view--btn-img", this);
+
+            summarySection.toggleClass("hide-content");
+
+            let currentSrc = viewBtnImg.attr("src");
+            let altSrc = viewBtnImg.data("alt-src");
+
+            viewBtnImg.attr("src", altSrc);
+            viewBtnImg.data("alt-src", currentSrc);
+            let orderId = $(this).data("order_id");
+            $.ajax({
+                url: '{{ route('client.orderView') }}',
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    orderId: orderId
+                },
+                success: function(data) {
+                    var lang = "{{ lang() }}"
+                    let order = data.order;
+                    console.log(order);
+                    if (order.address_id != null) {
+                        $("#country").text(order.address.country['title_' + lang]);
+                        $("#addressDetails").html(`${ order.address.building_no } ${ order.address.road } @lang('trans.Street'),
                         ${ order.address.region['title_'+lang] }`);
-                        } else {
+                    } else {
 
-                            $(".shipping-section").hide()
+                        $(".shipping-section").hide()
 
-                        }
+                    }
 
-                        $("#subTotal").html(
-                            `{{ Country()->currancy_code_en }} ${(order.sub_total*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                    $("#subTotal").html(
+                        `{{ Country()->currancy_code_en }} ${(order.sub_total*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                    );
+                    $("#vat").html(
+                        `{{ Country()->currancy_code_en }} ${(order.vat*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                    );
+                    if (order.delivery_id == 1) {
+                        $("#shipping").html(
+                            `{{ Country()->currancy_code_en }} ${(order.charge_cost*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
                         );
-                        $("#vat").html(
-                            `{{ Country()->currancy_code_en }} ${(order.vat*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                    } else {
+                        // console.log(1);
+                        $(".shippingCountainer").hide()
+                    }
+
+                    $("#total").html(
+                        `{{ Country()->currancy_code_en }} ${(order.net_total*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                    );
+
+                    if (order.coupon > 0) {
+                        $('.couponInfo').css('display', "flex")
+                        $("#coupon").html(
+                            `{{ Country()->currancy_code_en }} ${(order.coupon*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
                         );
-                        if (order.delivery_id == 1) {
-                            $("#shipping").html(
-                                `{{ Country()->currancy_code_en }} ${(order.charge_cost*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
-                            );
-                        } else {
-                            // console.log(1);
-                            $(".shippingCountainer").hide()
-                        }
-
-                        $("#total").html(
-                            `{{ Country()->currancy_code_en }} ${(order.net_total*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
+                        $("#sub_total_after_coupon").html(
+                            `{{ Country()->currancy_code_en }} ${(order.sub_total_after_coupon*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
                         );
 
-                        if (order.coupon > 0) {
-                            $('.couponInfo').css('display', "flex")
-                            $("#coupon").html(
-                                `{{ Country()->currancy_code_en }} ${(order.coupon*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
-                            );
-                            $("#sub_total_after_coupon").html(
-                                `{{ Country()->currancy_code_en }} ${(order.sub_total_after_coupon*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}`
-                            );
-
-                        }
-                        $('#paymentImage').attr('src', order.payment_method.image);
-                        // $("#order_cancel").data("order_id_cancel", order.id);
-                        $(".order-item").remove();
-                        let orderItemsHtml = '';
-                        order.order_products.forEach(function(item) {
-                            orderItemsHtml += `
+                    }
+                    $('#paymentImage').attr('src', order.payment_method.image);
+                    // $("#order_cancel").data("order_id_cancel", order.id);
+                    $(".order-item").remove();
+                    let orderItemsHtml = '';
+                    order.order_products.forEach(function(item) {
+                        orderItemsHtml += `
                         <div class="order-item">
                             <div class="item-img-box col-lg-2 col-6">
                                 <img class="w-100" src="${item.color.header[0].header}" />
@@ -755,13 +775,13 @@
                             </div>
                             <div class="price">{{ Country()->currancy_code_en }} ${(item.price*{{ Country()->currancy_value }}).toLocaleString('en', {minimumFractionDigits: {{ Country()->decimals }}, maximumFractionDigits: {{ Country()->decimals }}})}</div>
                         </div>`;
-                        });
-                        $(".order-items-container").append(orderItemsHtml);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
+                    });
+                    $(".order-items-container").append(orderItemsHtml);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
             });
+        });
     </script>
 @endpush

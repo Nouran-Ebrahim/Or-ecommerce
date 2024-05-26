@@ -9,8 +9,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Client extends Authenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes;
-
+    // use HasApiTokens, Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable;
     protected $guarded = [];
 
     protected $table = 'clients';

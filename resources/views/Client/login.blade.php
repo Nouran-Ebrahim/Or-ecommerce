@@ -245,7 +245,10 @@
                             @error('register_phone')
                                 <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
                             @enderror
-                            <input type="password" name="password" placeholder="@lang('trans.password')" />
+                            <input type="password" name="register_password" placeholder="@lang('trans.password')" />
+                            @error('register_password')
+                                <p class="alert alert-danger" style='color:red;'>{{ $message }}</p>
+                            @enderror
                             <button type="submit" class="btn btn-create-account">@lang('trans.CREATE ACCOUNT')</button>
                         </form>
                         <p class="creating-account-note">
@@ -271,13 +274,17 @@
             preferredCountries: ['sa']
         });
         // window.iti = iti2;
-        iti2.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
-
+        var initialCountryCode = "{{ old('country_code', 'SA') }}";
+        var initialPhoneCode = "{{ old('phone_code', 966) }}";
+        iti2.setCountry(initialCountryCode.toLowerCase());
+        // iti2.setCountry("{{ old('country_code', isset($country_code) ? $country_code : 'SA') }}");
         document.getElementById("phone").addEventListener("countrychange", function() {
             document.getElementById("phone").value = '';
             document.getElementById("country_code").value = iti2.getSelectedCountryData().iso2.toUpperCase();
             document.getElementById("phone_code").value = iti2.getSelectedCountryData().dialCode;
         })
+        document.getElementById("country_code").value = initialCountryCode;
+        document.getElementById("phone_code").value = initialPhoneCode;
     </script>
     <script>
         var iti = window.intlTelInput(document.getElementById("register_phone"), {
@@ -288,7 +295,10 @@
             preferredCountries: ['sa']
         });
         // window.iti = iti;
-        iti.setCountry("{{ old('register_country_code', isset($register_country_code) ? $country_code : 'SA') }}");
+        var initialCountryCode2 = "{{ old('register_country_code', 'SA') }}";
+        var initialPhoneCode2 = "{{ old('register_phone_code', 966) }}";
+        iti.setCountry(initialCountryCode2.toLowerCase());
+        // iti.setCountry("{{ old('register_country_code', isset($register_country_code) ? $country_code : 'SA') }}");
         document.getElementById("register_phone").addEventListener("countrychange", function() {
 
             document.getElementById("register_phone").value = '';
@@ -296,5 +306,7 @@
                 .toUpperCase();
             document.getElementById("register_phone_code").value = iti.getSelectedCountryData().dialCode;
         })
+        document.getElementById("register_country_code").value = initialCountryCode2;
+        document.getElementById("register_phone_code").value = initialPhoneCode2;
     </script>
 @endpush
